@@ -1,0 +1,27 @@
+---
+// src/layouts/BaseLayout.astro
+const { title } = Astro.props;
+import '../styles/global.css'
+import '@fontsource-variable/source-code-pro';
+---
+<html lang="en">
+  <head>
+    </head>
+  <body class="bg-zinc-950 text-white">
+    <nav class="sticky top-0 z-50 w-full border-b border-white/10 bg-zinc-950/80 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="text-xl font-bold tracking-tighter">MARIO VELOSO<br>Filmaker, Portugal</a>
+        <div class="flex gap-8 text-sm font-medium">
+          <a href="/projects" class="hover:text-zinc-400 transition-colors">Info</a>
+          <a href="/projects" class="hover:text-zinc-400 transition-colors">Films</a>
+          <a href="/about" class="hover:text-zinc-400 transition-colors">Photos</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+  </body>
+</html>

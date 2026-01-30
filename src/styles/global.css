@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  /* This defines the 'font-sans' family in Tailwind v4 */
+  --font-sans: "Source Code Pro Variable", ui-monospace, monospace;
+  
+  /* You can also add custom cinematic spacing here */
+  --letter-spacing-widest: 0.25em;
+}

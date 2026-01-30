@@ -61,3 +61,5 @@ Yes
 Yes
 
 `npm install -g npm@11.8.0`
+`npx astro add tailwind`
+`npm install @fontsource-variable/source-code-pro`
