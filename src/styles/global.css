@@ -1,9 +1,22 @@
 @import "tailwindcss";
 
 @theme {
+    --color-brand-blue: #0000fe; /* A deep Cobalt Blue */
+    --color-off-white: #fffff5;
   /* This defines the 'font-sans' family in Tailwind v4 */
   --font-sans: "Source Code Pro Variable", ui-monospace, monospace;
   
   /* You can also add custom cinematic spacing here */
   --letter-spacing-widest: 0.25em;
+}
+
+@layer base {
+  body {
+    @apply bg-[--color-off-white] text-[--color-brand-blue];
+  }
+}
+
+body {
+  background-color: #fffff5 !important;
+  color: #0000fe !important;
 }
