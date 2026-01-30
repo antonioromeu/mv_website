@@ -44,3 +44,20 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Commands ran to set up the project
+
+`brew install nvm`
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+
+`source ~/.zshrc`
+`nvm install --lts`
+`npm create astro@latest`
+./
+A basic, helpful starter project
+Yes
+Yes
+
+`npm install -g npm@11.8.0`
