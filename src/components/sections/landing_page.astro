@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import eoh_png from '../../assets/images/eoh.png';
+---
+
+<section 
+    id="landing_page" 
+    data-color="var(--color-blue)" 
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-row items-end overflow-hidden shrink-0"
+    style="scroll-margin-top: var(--nav-height);"
+>
+    <div class="w-[65vw] h-auto flex items-end leading-0">
+        <img 
+            src={eoh_png.src}
+            alt="Eis o Homem - Still"
+            class="w-full h-auto block m-0 align-bottom"
+        />
+    </div>
+
+    <div class="w-[35vw] pr-[3.5vw] pb-[10vh] pl-5">
+        <div class="flex flex-col mb-6">
+            <span class="block text-base md:text-lg">
+                Coming Soon
+            </span>
+            <span class="block text-base md:text-lg font-bold -mt-1">
+                Behold the Man
+            </span>
+        </div>
+        <p class="text-xs">
+            As a teenager I learned that desire can also be a wound. I aim to capture that instant: when the body learns devotion and dread in the same breath.
+            <br/>
+            Adolescence arrives as the body awakens, a founding moment when desire can be an experience of the sacred, or an omen of death. The film observes that threshold, giving it a place and form.
+        </p>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import TrailerCard from '../trailer_card.astro';
+import fdb_jpg from '../../assets/images/fdb.jpg';
+import fdb_svg from '../../assets/vectors/fdb.svg?raw';
+---
+
+<section 
+    id="fdb-section"
+    data-color="var(--color-pink)"
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-row items-end overflow-hidden shrink-0"
+    style="scroll-margin-top: var(--nav-height);"
+>
+    <div class="w-[60vw] pr-[3.5vw] pb-[10vh]">
+        <Fragment set:html={fdb_svg} />
+    </div>
+
+    <div class="w-[40vw] pb-[10vh]">
+        <TrailerCard 
+            vimeoId="947903397"
+            imageSrc={fdb_jpg}
+            alt="Fora da Bouça"
+            color="var(--color-pink)"
+            type="film"
+        />
+    </div>
+</section>

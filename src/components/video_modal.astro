@@ -1,0 +1,43 @@
+<div id="video-modal" class="fixed inset-0 z-100 hidden items-center justify-center bg-black/90 backdrop-blur-xl p-4 md:p-10">
+    <button id="close-modal" class="absolute top-8 right-8 tracking-widest text-xs font-bold cursor-pointer transition-all duration-500 ease-in-out hover:opacity-50">
+        [ Close ]
+    </button>
+    <div class="w-full max-w-6xl aspect-video bg-black shadow-2xl">
+        <iframe id="vimeo-player" src="" class="w-full h-full" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('video-modal');
+    const playButtons = document.querySelectorAll('.play-button');
+    const closeBtn = document.getElementById('close-modal');
+    const player = document.getElementById('vimeo-player') as HTMLIFrameElement;
+
+    playButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const vimeoId = button.getAttribute('data-vimeo-id');
+            
+            // 1. Find the parent section to get the brand color
+            const parentSection = button.closest('section');
+            const sectionColor = parentSection?.getAttribute('data-color') || 'white';
+
+            // 2. Apply that color to the Close button
+            if (closeBtn) {
+                closeBtn.style.color = sectionColor;
+            }
+
+            player.src = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`;
+            modal?.classList.replace('hidden', 'flex');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeModal = () => {
+        modal?.classList.replace('flex', 'hidden');
+        if (player) player.src = "";
+        document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+</script>

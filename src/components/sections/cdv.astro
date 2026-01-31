@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import TrailerCard from '../trailer_card.astro';
+import cdv_png from '../../assets/images/cdv.png';
+import cdv_svg from '../../assets/vectors/cdv.svg?raw';
+---
+
+<section 
+    id="cdv-section" 
+    data-color="var(--color-orange)" 
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-row items-end overflow-hidden shrink-0"
+    style="scroll-margin-top: var(--nav-height);"
+>
+    <div class="w-[40vw] pb-[10vh]">
+        <TrailerCard 
+            vimeoId="935462533"
+            imageSrc={cdv_png}
+            alt="Chuvas de Verão"
+            color="var(--color-orange)"
+            type="trailer"
+        />
+    </div>
+
+    <div class="w-[60vw] pr-[3.5vw] pb-[10vh]">
+        <Fragment set:html={cdv_svg} />
+    </div>
+</section>

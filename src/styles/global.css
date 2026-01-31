@@ -1,29 +1,72 @@
 @import "tailwindcss";
 
-@theme {
+:root {
     --color-off-white: #fffff5;
     --color-blue: #0000fe;
     --color-orange: #e8611d;
-    --font-sans: "Source Code Pro Variable", monospace;
+    --color-pink: #da328a;
+    --font-mono: "Source Code Pro Variable", monospace;
+    --spacing-gutter: 3.5vw;
+    --nav-height: 15vh; /* Match this to your actual nav height */
 }
 
 @layer base {
-    html, body {
-        background-color: var(--color-off-white);
-        /* This ensures the font is applied even if JS touches the style */
-        font-family: "Source Code Pro Variable", monospace !important;
-        color: var(--color-blue);
-        margin: 0;
-        padding: 0;
+    html {
         scroll-behavior: smooth;
+        /* Clean snap settings */
+        scroll-snap-type: y mandatory;
     }
 
     body {
+        background-color: var(--color-off-white);
+        font-family: var(--font-mono);
+        color: var(--color-brand-blue);
         transition: color 0.6s ease-in-out;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Apply global horizontal padding to your standard containers if needed */
+    .container-padding {
+        padding-left: var(--spacing-gutter);
+        padding-right: var(--spacing-gutter);
     }
 }
 
-/* This tells the browser: "When scrolling to an ID, stop 8rem (h-32) early" */
+/* --- Section & Scroll Snapping --- */
 .color-section {
-  scroll-margin-top: 8rem; 
+    scroll-snap-align: start;
+    /* Syncs with your 15vh (mobile) and 20vh (desktop) nav heights */
+    scroll-margin-top: var(--nav-height);
+}
+
+@media (min-width: 768px) {
+    .color-section {
+        scroll-margin-top: 20vh;
+    }
+}
+
+/* --- SVG Color Sync --- */
+/* This ensures any SVG in a color section follows the current text color */
+.color-section svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.color-section svg path {
+    /* Using 'inherit' allows the path to take fill/stroke from the parent <svg> */
+    fill: inherit;
+    stroke: currentColor;
+}
+
+/* --- Utilities --- */
+.hide-scrollbar {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
