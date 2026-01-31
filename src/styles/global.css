@@ -1,18 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* This creates 'bg-off-white' and 'text-brand-blue' */
-  --color-off-white: #fffff5;
-  --color-brand-blue: #0000fe;
-  
-  --font-sans: "Source Code Pro Variable", monospace;
+    --color-off-white: #fffff5;
+    --color-blue: #0000fe;
+    --color-orange: #e8611d;
+    --font-sans: "Source Code Pro Variable", monospace;
 }
 
-/* Custom CSS for the body */
 @layer base {
-  body {
-    background-color: var(--color-off-white);
-    color: var(--color-brand-blue);
-    font-family: var(--font-sans);
-  }
+    html, body {
+        background-color: var(--color-off-white);
+        /* This ensures the font is applied even if JS touches the style */
+        font-family: "Source Code Pro Variable", monospace !important;
+        color: var(--color-blue);
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        transition: color 0.6s ease-in-out;
+    }
+}
+
+/* This tells the browser: "When scrolling to an ID, stop 8rem (h-32) early" */
+.color-section {
+  scroll-margin-top: 8rem; 
 }
