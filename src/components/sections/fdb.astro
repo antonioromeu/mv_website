@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import TrailerCard from '../trailer_card.astro';
 import fdb_jpg from '../../assets/images/fdb.jpg';
 import fdb_svg from '../../assets/vectors/fdb.svg?raw';
@@ -8,20 +7,24 @@ import fdb_svg from '../../assets/vectors/fdb.svg?raw';
 <section 
     id="fdb-section"
     data-color="var(--color-pink)"
-    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-row items-end overflow-hidden shrink-0"
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row overflow-hidden shrink-0"
     style="scroll-margin-top: var(--nav-height);"
 >
-    <div class="w-[60vw] pr-[3.5vw] pb-[10vh]">
+    <!-- SVG section -->
+    <div class="w-full md:w-[50vw] pr-[10vw] pl-[3.5vw] md:px-0 pt-[6vh] md:pt-0 md:pb-[2vw] md:pl-[3.5vw] md:pr-[3.5vw] flex items-start md:items-end [&>svg]:w-full [&>svg]:h-auto">
         <Fragment set:html={fdb_svg} />
     </div>
 
-    <div class="w-[40vw] pb-[10vh]">
-        <TrailerCard 
-            vimeoId="947903397"
-            imageSrc={fdb_jpg}
-            alt="Fora da Bouça"
-            color="var(--color-pink)"
-            type="film"
-        />
+    <!-- Still section -->
+    <div class="w-full md:w-[50vw] pr-[3.5vw] pl-[10vw] md:pr-[3.5vw] md:pl-[2.5vw] flex justify-end md:justify-center items-start pt-[2.5vh] md:pt-0 shrink-0">
+        <div class="relative w-fit">
+            <TrailerCard 
+                vimeoId="947903397"
+                imageSrc={fdb_jpg}
+                alt="Fora da Bouça"
+                color="var(--color-pink)"
+                type="film"
+            />
+            <span class="absolute bottom-0 right-0 translate-y-full text-[9px] md:text-xs tracking-widest">Portugal, 2021</span>
+        </div>
     </div>
-</section>

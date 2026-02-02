@@ -4,27 +4,28 @@ import '../styles/global.css'
 import '@fontsource-variable/source-code-pro';
 ---
 
-<html lang="en" class="snap-y snap-mandatory scroll-smooth">
+<html lang="en" class="scroll-smooth antialiased [text-size-adjust:100%]">
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <title>{title}</title>
     </head>
 
-    <body class="antialiased">
+    <body class="overscroll-y-none">
         <nav class="sticky top-0 z-50 w-full bg-inherit transition-colors duration-500">
             <div 
                 style="height: var(--nav-height);"
-                class="w-full px-[3.5vw] flex items-start justify-between pt-[4vh]"
-            >
-                <a href="/#landing_page" class="nav-link text-4xl md:text-6xl font-black tracking-tighter leading-[0.6] text-current">
+                    class="w-full px-[3.5vw] flex flex-col md:flex-row items-start justify-center md:justify-between pt-[2vh] md:pt-[4vh] gap-6 md:gap-0"
+                >
+                <a href="/#landing_page" class="nav-link group block no_uderline text-4xl md:text-6xl font-black tracking-tighter leading-[0.5] text-current transition-colors duration-500">
                     Mário Veloso<br>
-                    <span class="text-xl font-normal tracking-[0.0em]">Filmmaker, Portugal</span>
+                    <span class="text-sm md:text-xl font-normal tracking-[0.0em]">Filmmaker, Portugal</span>
                 </a>
 
-                <div class="flex gap-12 text-base md:text-lg tracking-widest font-bold text-current pt-[1vh]">
+                <div class="flex w-full md:w-auto justify-between md:justify-start text-sm md:text-lg tracking-widest font-bold text-current md:gap-[13vw]">
                     <div class="relative group cursor-pointer">
                         <a href="/films" class="nav-link hover:opacity-50 transition-opacity pb-2">Films</a>
-                        <div class="absolute left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
+                        <div class="hidden md:block absolute left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
                             <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
                                 <a href="/films/documentary" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Documentary</a>
                                 <a href="/films/narrative" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Narrative</a>
@@ -32,7 +33,7 @@ import '@fontsource-variable/source-code-pro';
                             </div>
                         </div>
                     </div>
-                    <a href="/photos" class="hover:opacity-50 transition-opacity">Photos</a>
+                    <a href="/photos" class="nav-link hover:opacity-50 transition-opacity">Photos</a>
                     <a href="/info" class="nav-link hover:opacity-50 transition-opacity">Info</a>
                 </div>
             </div>

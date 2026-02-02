@@ -3,64 +3,65 @@ import BaseLayout from '../layouts/base_layout.astro';
 import LandingPage from '../components/sections/landing_page.astro';
 import ChuvasDeVerao from '../components/sections/cdv.astro';
 import ForaDaBouca from '../components/sections/fdb.astro';
+import RioTorto from '../components/sections/rt.astro';
 import VideoModal from '../components/video_modal.astro';
 // import EisOHomem from '../components/sections/cdv.astro';
 // import About from '../components/sections/about.astro';
 ---
-<BaseLayout title="Mário Veloso | Filmmaker">
+<BaseLayout title="Mário Veloso">
     <LandingPage />
-
     <ChuvasDeVerao />
-
     <ForaDaBouca />
-
+    <RioTorto />
     <VideoModal />
 
     <script>
-        window.addEventListener('load', () => {
+        // Use DOMContentLoaded to get the script running as soon as the HTML is ready
+        document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('.color-section');
             const navLinks = document.querySelectorAll('.nav-link');
             const body = document.body;
 
-            const updateStyles = () => {
-                // 1. Define the type clearly
-                let currentSection: HTMLElement | null = null;
-                
-                // The "trigger point" is 40% down the screen
-                const triggerPoint = window.innerHeight * 0.4;
-
-                sections.forEach((section) => {
-                    // 2. Cast the section to HTMLElement
-                    const el = section as HTMLElement;
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
-                        currentSection = el;
-                    }
-                });
-
-                // 3. This check now satisfies TypeScript
-                if (currentSection) {
-                    const newColor = (currentSection as HTMLElement).getAttribute('data-color') ?? '#0000fe';
-                    const sectionId = (currentSection as HTMLElement).getAttribute('id');
-
-                    // Update Body Color
-                    body.style.color = newColor;
-
-                    // Update Nav Links
-                    navLinks.forEach(link => {
-                        const href = link.getAttribute('href');
-                        if (href && (href === `#${sectionId}` || href.endsWith(`/#${sectionId}`))) {
-                            link.classList.add('nav-link-active');
-                        } else {
-                            link.classList.remove('nav-link-active');
-                        }
-                    });
-                }
+            // INTERSECTION OBSERVER: The "Modern" Mobile-First way
+            // This replaces the heavy 'scroll' listener math
+            const observerOptions = {
+                // This creates a "detection strip" across the viewport.
+                // -20% from top and -40% from bottom ensures the color 
+                // changes when the section is truly the "hero" of the screen.
+                rootMargin: '-49% 0px -49% 0px',
+                threshold: 0
             };
 
-            // Run on scroll and on initial load
-            window.addEventListener('scroll', updateStyles);
-            updateStyles(); 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target as HTMLElement;
+                        const newColor = el.getAttribute('data-color') ?? '#0000fe';
+                        const sectionId = el.getAttribute('id');
+
+                        // 1. Update Body Color
+                        body.style.color = newColor;
+
+                        // 2. Update Nav Links (Cleanly toggles the active class)
+                        navLinks.forEach(link => {
+                            const href = link.getAttribute('href');
+                            const isActive = href && (href === `#${sectionId}` || href.endsWith(`/#${sectionId}`));
+                            link.classList.toggle('nav-link-active', !!isActive);
+
+                            // Force the link color to match if needed
+                            if (isActive) {
+                                (link as HTMLElement).style.color = newColor;
+                            } else {
+                                // IMPORTANT: If it's not active, reset it to 'inherit' 
+                                // so it follows the body color automatically
+                                (link as HTMLElement).style.color = 'inherit';
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
         });
     </script>
 </BaseLayout>

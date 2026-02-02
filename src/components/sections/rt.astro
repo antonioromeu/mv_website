@@ -1,0 +1,35 @@
+---
+import TrailerCard from '../trailer_card.astro';
+import rt_png from '../../assets/images/rt.jpg';
+import rt_landscape_svg from '../../assets/vectors/rt_landscape.svg?raw';
+import rt_vertical_1_svg from '../../assets/vectors/rt_vertical_1.svg?raw';
+import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
+---
+
+<section 
+    id="rt-section" 
+    data-color="var(--color-green)" 
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row md:items-center overflow-hidden shrink-0"
+    style="scroll-margin-top: var(--nav-height);"
+>
+    <div class="flex flex-col md:flex-row items-stretch md:items-end w-full h-full md:h-auto">
+        <!-- Still section -->
+        <div class="w-full md:w-[50vw] pl-0 md:pl-[3.5vw] pr-[3.5vw] md:pr-[1.5vw] pt-[6vh] flex justify-start md:justify-center shrink-0">
+            <div class="relative w-fit">
+                <TrailerCard 
+                vimeoId="947890689"
+                imageSrc={rt_png}
+                alt="Rio Torto"
+                color="var(--color-green)"
+                type="film"
+                />
+                <span class="absolute top-0 left-0 text-[8px] md:text-xs tracking-widest">Portugal, 2019</span>
+            </div>
+        </div>
+    
+        <!-- SVG section -->
+        <div class="w-full md:w-[50vw] px-[3.5vw] md:px-0 md:pr-[3.5vw] md:pl-[1.5vw] flex flex-1 items-center md:items-end overflow-hidden">
+            <Fragment set:html={rt_landscape_svg} />
+        </div>
+    </div>
+</section>
