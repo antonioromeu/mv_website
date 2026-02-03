@@ -17,24 +17,39 @@ import '@fontsource-variable/source-code-pro';
                 style="height: var(--nav-height);"
                     class="w-full px-[3.5vw] flex flex-col md:flex-row items-start justify-center md:justify-between pt-[2vh] md:pt-[4vh] gap-6 md:gap-0"
                 >
-                <a href="/#landing_page" class="nav-link group block no_uderline text-4xl md:text-6xl font-black tracking-tighter leading-[0.5] text-current transition-colors duration-500">
+                <a 
+                    href="javascript:void(0)" 
+                    onclick="window.scrollTo({top: 0, behavior: 'smooth'}); history.pushState('', document.title, window.location.pathname);" 
+                    class="nav-link group block no_uderline text-4xl md:text-6xl font-black tracking-tighter leading-[0.5] text-current transition-colors duration-500"
+                >
                     Mário Veloso<br>
                     <span class="text-sm md:text-xl font-normal tracking-[0.0em]">Filmmaker, Portugal</span>
                 </a>
 
                 <div class="flex w-full md:w-auto justify-between md:justify-start text-sm md:text-lg tracking-widest font-bold text-current md:gap-[13vw]">
                     <div class="relative group cursor-pointer">
-                        <a href="/films" class="nav-link hover:opacity-50 transition-opacity pb-2">Films</a>
+                        <span class="nav-link hover:opacity-50 pb-2 block transition-opacity">Films</span>
+                        <!-- <a href="/films" class="nav-link hover:opacity-50 transition-opacity pb-2">Films</a> -->
                         <div class="hidden md:block absolute left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
                             <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
-                                <a href="/films/documentary" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Documentary</a>
-                                <a href="/films/narrative" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Narrative</a>
-                                <a href="/films/commercial" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Commercial</a>
+                                <a href="#cdv-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Chuvas de Verão</a>
+                                <a href="#fdb-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Fora da Bouça</a>
+                                <a href="#rt-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Rio Torto</a>
                             </div>
                         </div>
                     </div>
                     <a href="/photos" class="nav-link hover:opacity-50 transition-opacity">Photos</a>
-                    <a href="/info" class="nav-link hover:opacity-50 transition-opacity">Info</a>
+                    <div class="relative group cursor-pointer">
+                        <a href="/films" class="nav-link hover:opacity-50 transition-opacity pb-2">Info</a>
+                        <div class="hidden md:block absolute right-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
+                            <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
+                                <a href="#about-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">About Me</a>
+                                <a href="#festivals-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Festivals & Awards</a>
+                                <a href="#ad-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Assistant Director</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a href="/info" class="nav-link hover:opacity-50 transition-opacity">Info</a> -->
                 </div>
             </div>
         </nav>

@@ -2,22 +2,21 @@
 import { Image } from 'astro:assets';
 
 interface Props {
-  vimeoId: string;
-  imageSrc: any;
-  alt: string;
-  color?: string;
-  type?: 'trailer' | 'film'; // The new flag
+    vimeoId: string;
+    imageSrc: any;
+    alt: string;
+    color?: string;
+    type?: 'trailer' | 'film';
 }
 
 const { 
-  vimeoId, 
-  imageSrc, 
-  alt, 
-  color = "white", 
-  type = 'trailer' // Defaulting to trailer
+    vimeoId, 
+    imageSrc, 
+    alt, 
+    color = "white", 
+    type = 'trailer'
 } = Astro.props;
 
-// Map the flag to the display text
 const label = type === 'film' ? 'Play Film' : 'Play Trailer';
 ---
 
@@ -28,10 +27,10 @@ const label = type === 'film' ? 'Play Film' : 'Play Trailer';
     <Image 
         src={imageSrc} 
         alt={alt} 
-        class="w-full h-auto transition-transform duration-700 group-hover:scale-105 block"
+        class="w-full h-auto transition-transform duration-700 group-hover:scale-105 group-[.is-active]:scale-105 block"
     />
 
-    <div class="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 group-[.is-active]:opacity-100 transition-opacity duration-500 z-10">
         <span 
             style={`color: ${color}; border-color: ${color};`}
             class="text-xs tracking-[0.4em] font-bold border px-6 py-3 backdrop-blur-sm"

@@ -1,5 +1,6 @@
 ---
 import eoh_png from '../../assets/images/eoh.png';
+import '../../styles/arrow.css';
 ---
 
 <section 
@@ -30,4 +31,21 @@ import eoh_png from '../../assets/images/eoh.png';
             class="w-full h-auto object-contain block m-0 md:w-auto md:h-full" 
             />
     </div>
+
+    <!-- Animated arrow -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none flex justify-center items-center">
+        <div class="line-container">
+            <div class="line"></div>
+        </div>
+    </div>
 </section>
+
+<style>
+    /* Optional: Scale down the arrow slightly for mobile */
+    @media (max-width: 768px) {
+        .arrow-down {
+            transform: scale(0.7);
+            bottom: 10px;
+        }
+    }
+</style>

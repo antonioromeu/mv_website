@@ -12,23 +12,40 @@ import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
     class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row md:items-center overflow-hidden shrink-0"
     style="scroll-margin-top: var(--nav-height);"
 >
-    <div class="flex flex-col md:flex-row items-stretch md:items-end w-full h-full md:h-auto">
-        <!-- Still section -->
-        <div class="w-full md:w-[50vw] pl-0 md:pl-[3.5vw] pr-[3.5vw] md:pr-[1.5vw] pt-[6vh] flex justify-start md:justify-center shrink-0">
+    <!-- Mobile view -->
+    <div class="flex flex-col md:hidden w-full h-full pt-[8vh] items-center overflow-hidden">
+        <div class="w-full flex justify-start">
+            <div class="w-full pl-[15vw] pr-[3.5vw] pb-[1vh]">
+                <Fragment set:html={rt_vertical_1_svg} />
+            </div>
+        </div>
+        <div class="relative w-fit px-[3.5vw]">
+            <span class="absolute bottom-0 right-[3.5vw] translate-y-full text-[8px] tracking-widest">Portugal, 2019</span>
+            <TrailerCard vimeoId="947890689" imageSrc={rt_png} alt="Rio Torto" color="var(--color-green)" type="film" />
+        </div>
+        <div class="w-full flex">
+            <div class="w-full pt-[2vh] pl-[3.5vw] pr-[50vw]">
+                <Fragment set:html={rt_vertical_2_svg} />
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop view -->
+    <div class="hidden md:flex flex-row items-end w-full h-auto">
+        <div class="w-[50vw] pl-[3.5vw] pr-[1.5vw] pt-[15vh] flex justify-center shrink-0">
             <div class="relative w-fit">
+                <span class="absolute top-0 left-0 -translate-y-full text-xs tracking-widest ">Portugal, 2019</span>
                 <TrailerCard 
-                vimeoId="947890689"
-                imageSrc={rt_png}
-                alt="Rio Torto"
-                color="var(--color-green)"
-                type="film"
+                    vimeoId="947890689"
+                    imageSrc={rt_png}
+                    alt="Rio Torto"
+                    color="var(--color-green)"
+                    type="film"
                 />
-                <span class="absolute top-0 left-0 text-[8px] md:text-xs tracking-widest">Portugal, 2019</span>
             </div>
         </div>
     
-        <!-- SVG section -->
-        <div class="w-full md:w-[50vw] px-[3.5vw] md:px-0 md:pr-[3.5vw] md:pl-[1.5vw] flex flex-1 items-center md:items-end overflow-hidden">
+        <div class="w-[50vw] pr-[3.5vw] pl-[1.5vw] flex flex-1 items-end overflow-hidden">
             <Fragment set:html={rt_landscape_svg} />
         </div>
     </div>
