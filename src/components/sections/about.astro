@@ -1,5 +1,6 @@
 ---
 import about_gif from '../../assets/images/about.gif';
+import about_mp4 from '../../assets/videos/about.mp4';
 ---
 
 <section 
@@ -10,32 +11,37 @@ import about_gif from '../../assets/images/about.gif';
 >
     <!-- Desktop view -->
     <div class="hidden md:flex flex-row w-full h-full">
-        <!-- Text section -->
+        <!-- About Me section -->
         <div class="w-[50vw] pt-[7.5vh] pl-[3.5vw] pr-[3.5vw]">
-            <span class="block font-bold text-lg pb-[2vh]">About Me</span>
-            <p class="text-sm leading-relaxed ">
+            <span class="block font-bold text-lg">About Me</span>
+            <p class="text-sm leading-relaxed space-y-4">
                 Interrogating desire and the bodies that inhabit the fringes of collective rituals, Mário Veloso carves out a cinematic territory where the traditions and landscapes of Northern Portugal are pierced by secret and dissident impulses. A filmmaker from Braga, trained at the Lisbon Theatre and Film School and Elías Querejeta Zine Eskola, he investigates the zones of silence and the imaginaries of both individual and collective identity and memory.
-                <span class="block h-6"></span>
+                <span class="block my-4"></span>
                 His artistic path, defined by a rigorous and independent creative process, includes <em>Rio Torto</em> (2019), <em>Fora da Bouça</em> // <em>Ours is the Wasteland</em> (2021), and <em>Chuvas de Verão</em> // <em>Summer Rains</em> (2024). These works have established a prestigious international circuit, with screenings at festivals such as San Sebastián, Doclisboa, and IndieLisboa, where his visual language has been met with critical acclaim.
-                <span class="block h-6"></span>
+                <span class="block my-4"></span>
                 Combining on-set agility with a singular authorial voice, he has also collaborated as an assistant director on over twenty national and international projects. It is within the duality between the technical precision of large-scale productions and the freedom of his own artistic intervention that Mário Veloso establishes his method—driven by curiosity and by everything that, in the observation of the world, refuses to be revealed.
             </p>
-            <span class="block font-bold text-lg pt-[8vh]">Reach Out</span>
-            <p class="text-[11px] text-xs leading-relaxed md:text-sm">
+            <span class="block font-bold text-lg pt-[2vh]">Reach Out</span>
+            <p class="text-xs leading-relaxed">
                 <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                 <br>
                 <a href="https://www.instagram.com/its.a.me_mariov/">Instagram</a>
             </p>
         </div>
+        <div class="mt-8">
+        </div>
         
         <!-- Image section -->
         <div class="w-[50vw] flex justify-end items-end overflow-hidden">
-            <img 
-                src={about_gif.src} 
-                alt="Loop" 
-                loading="lazy" 
-                class="w-full h-auto object-contain block" 
-                />
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="w-full h-auto object-contain block"
+            >
+                <source src={about_mp4} type="video/mp4">
+            </video>
         </div>
     </div>
 </section>
