@@ -69,3 +69,11 @@
         display: none;
     }
 }
+
+/* When the container has the .is-open class, show the child dropdown */
+.mobile-dropdown-container.is-open .mobile-dropdown-content {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    visibility: visible;
+}

@@ -1,26 +1,142 @@
----
-
----
-
 <section 
     id="festivals-awards-section" 
     data-color="var(--color-blue)" 
     class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row md:items-center overflow-hidden shrink-0"
     style="scroll-margin-top: var(--nav-height);"
 >
-    <!-- Mobile view -->
+    <!-- Mobile view  -->
     <div class="flex flex-col md:hidden w-full h-full overflow-hidden">
-        <div class="w-full flex-1 px-[3.5vw] pb-[2vh] order-1 flex flex-col justify-center">
-            <div class="flex flex-col mb-4">
-                <span class="block text-sm">Coming soon</span>
-                <span class="block text-sm font-bold">Festivals & Awards</span>
+        <!-- Header -->
+        <div class="w-full px-[3.5vw] pb-[1vh]">
+            <div class="border-b border-current pb-[1vh]">
+                <span class="block text-xs font-bold">Festivals & Awards</span>
             </div>
+        </div>
+        
+        <!-- Scrollable pages container -->
+        <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex" id="festivals-scroll">
+            <!-- Page 1 -->
+            <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+                <div class="text-[10px] leading-relaxed space-y-[1vh]">
+                    <div>
+                        2025 <strong>Doclisboa</strong> Portugal
+                        <br />Arché Lab
+                    </div>
+                    <div>
+                        2025 <strong>Celaya Intl Film Festival</strong> Mexico
+                    </div>
+                    <div>
+                        2025 <strong>EUREKA Univ Film Festival</strong> Colombia
+                    </div>
+                    <div>
+                        2025 <strong>TIFF [Toronto International Film Festival]</strong> Canada
+                        <br />Sponsored Guest
+                    </div>
+                    <div>
+                        2025 <strong>FICUNAM</strong> Mexico
+                    </div>
+                    <div>
+                        2024 <strong>VITA Intl Short Film Festival</strong> China
+                    </div>
+                    <div>
+                        2024 <strong>YMotion</strong> Portugal
+                        <br /><strong>Best Script</strong>
+                    </div>
+                    <div>
+                        2024 <strong>Caminhos do Cinema Português</strong> Portugal
+                    </div>
+                    <div>
+                        2024 <strong>SSIFF [San Sebastian International Film Festival]</strong> Spain
+                    </div>
+                    <div>
+                        2024 <strong>Indielisboa</strong> Portugal
+                    </div>
+                    <div>
+                        2024 <strong>Shortcutz Lisboa</strong> Portugal
+                    </div>
+                    <div>
+                        2023 <strong>Doclisboa</strong> Portugal
+                        <br />Jury Member
+                    </div>
+                    <div>
+                        2022 <strong>Beykoz Kundura</strong> Turkey
+                    </div>
+                    <div>
+                        2022 <strong>Shortage</strong> Portugal
+                    </div>
+                    <div>
+                        2022 <strong>Iconic Images</strong> Lituania
+                    </div>
+                    <div>
+                        2022 <strong>Stockholm City Film Festival</strong> Sweden
+                    </div>
+                    <div>
+                        2022 <strong>Couch Film Festival</strong> Canada
+                    </div>
+                    <div>
+                        2022 <strong>Family Film Project</strong> Portugal
+                    </div>
+                    <div>
+                        2022 <strong>Entre Olhares</strong> Portugal
+                    </div>
+                    <div>
+                        2022 <strong>Triste Para Sempre</strong> Portugal
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+                <div class="text-[10px] leading-relaxed space-y-[1vh]">
+                    <div>
+                        2021 <strong>Doclisboa</strong> Portugal
+                        <br /><strong>Green Years Honorable Mention</strong>
+                    </div>
+                    <div>
+                        2021 <strong>Cannes Film Festival</strong> France
+                        <br />Focus Script Lab
+                    </div>
+                    <div>
+                        2020 <strong>Cinema Verite</strong> Iran
+                    </div>
+                    <div>
+                        2020 <strong>Doclisboa</strong> Macau
+                    </div>
+                    <div>
+                        2020 <strong>Doclisboa</strong> Portugal
+                    </div>
+                    <div>
+                        2020 <strong>CineEco</strong> Portugal
+                    </div>
+                    <div>
+                        2020 <strong>Caminhos do Cinema Português</strong> Portugal
+                    </div>
+                    <div>
+                        2020 <strong>YMotion</strong> Portugal
+                        <br /><strong>Best Documentary</strong>
+                    </div>
+                    <div>
+                        2019 <strong>Shortcutz</strong> Portugal
+                    </div>
+                    <div>
+                        2019 <strong>Doclisboa</strong> Portugal
+                        <br /><strong>Fernando Lopes Award for Best First Portuguese Film</strong>
+                        <br /><div class="text-[9.75px] leading-relaxed"><strong>Pedro Fortes Award for Best Portuguese Film in the Green Years</strong> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page indicators -->
+        <div class="flex justify-center gap-2 py-[2vh]">
+            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current transition-opacity" data-page="0"></div>
+            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current opacity-30 transition-opacity" data-page="1"></div>
         </div>
     </div>
 
     <!-- Desktop view -->
     <div class="hidden md:flex flex-col w-full h-full pt-[3vh] px-[3.5vw]">
-        <div class="w-full border-b border-current pb-2 mb-3">
+        <div class="w-full border-b border-current pb-[1vh] mb-[1vh]">
             <div class="flex flex-col">
                 <span class="block font-bold text-lg">Festivals & Awards</span>
             </div>
@@ -62,7 +178,7 @@
             </div>
 
             <div class="break-inside-avoid mb-6">
-                2024 <strong>San Sebastian International Film Festival</strong> Spain
+                2024 <strong>SSIFF [San Sebastian International Film Festival]</strong> Spain
             </div>
 
             <div class="break-inside-avoid mb-6">
@@ -157,3 +273,27 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Page indicator logic for mobile
+        const scrollContainer = document.getElementById('festivals-scroll');
+        const indicators = document.querySelectorAll('.page-indicator');
+
+        if (scrollContainer && indicators.length > 0) {
+            scrollContainer.addEventListener('scroll', () => {
+                const scrollLeft = scrollContainer.scrollLeft;
+                const pageWidth = scrollContainer.clientWidth;
+                const currentPage = Math.round(scrollLeft / pageWidth);
+
+                indicators.forEach((indicator, index) => {
+                    if (index === currentPage) {
+                        (indicator as HTMLElement).style.opacity = '1';
+                    } else {
+                        (indicator as HTMLElement).style.opacity = '0.3';
+                    }
+                });
+            });
+        }
+    });
+</script>
