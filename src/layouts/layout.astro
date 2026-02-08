@@ -1,13 +1,38 @@
 ---
-const { title } = Astro.props;
+const { title, lang = 'pt' } = Astro.props; // Default to PT
 import '../styles/global.css'
 import '@fontsource-variable/source-code-pro';
 const base = import.meta.env.BASE_URL;
 
+const translations = {
+  pt: {
+    films: "Filmes",
+    photos: "Fotos",
+    info: "Info",
+    comingSoon: "Em breve",
+    about: "Sobre Mim",
+    festivals: "Festivais & Prémios",
+    assistant: "Assistente de Realização",
+    filmmaker: "Realizador, Portugal"
+  },
+  en: {
+    films: "Films",
+    photos: "Photos",
+    info: "Info",
+    comingSoon: "Coming Soon",
+    about: "About Me",
+    festivals: "Festivals & Awards",
+    assistant: "Assistant Director",
+    filmmaker: "Filmmaker, Portugal"
+  }
+};
+
+const t = translations[lang as keyof typeof translations];
+
 // 1. Data Structure to prevent HTML repetition
 const navItems = [
   {
-    title: "Films",
+    title: t.films,
     links: [
       { label: "Chuvas de Verão", href: "#cdv-section" },
       { label: "Fora da Bouça", href: "#fdb-section" },
@@ -15,21 +40,25 @@ const navItems = [
     ]
   },
   {
-    title: "Photos",
-    links: [{ label: "Coming Soon", href: null }]
+    title: t.photos,
+    links: [{ label: t.comingSoon, href: null }]
   },
   {
-    title: "Info",
+    title: t.info,
     links: [
-      { label: "About Me", href: "#about-section" },
-      { label: "Festivals & Awards", href: "#festivals-awards-section" },
-      { label: "Assistant Director", href: "#assistant-director-section" },
+      { label: t.about, href: "#about-section" },
+      { label: t.festivals, href: "#festivals-awards-section" },
+      { label: t.assistant, href: "#assistant-director-section" },
     ]
   }
 ];
+
+// Determine the toggle link
+const toggleLang = lang === 'pt' ? 'en' : 'pt';
+const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '');
 ---
 
-<html lang="en" class="scroll-smooth antialiased [text-size-adjust:100%]">
+<html lang="{lang}" class="scroll-smooth antialiased [text-size-adjust:100%]">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
