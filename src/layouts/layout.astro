@@ -2,16 +2,17 @@
 const { title } = Astro.props;
 import '../styles/global.css'
 import '@fontsource-variable/source-code-pro';
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en" class="scroll-smooth antialiased [text-size-adjust:100%]">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-        <link rel="manifest" href="/favicon_io/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href={`${base}/favicon_io/apple-touch-icon.png`}>
+        <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon_io/favicon-32x32.png`}>
+        <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon_io/favicon-16x16.png`}>
+        <link rel="manifest" href={`${base}/favicon_io/site.webmanifest`}>
         <title>{title}</title>
     </head>
 
@@ -105,9 +106,18 @@ import '@fontsource-variable/source-code-pro';
         </main>
         
         <script>
-            const dropdownContainers = document.querySelectorAll('.mobile-dropdown-container');
-            const dropdownLinks = document.querySelectorAll('.mobile-dropdown-content a');
             document.addEventListener('DOMContentLoaded', () => {
+                const sections = document.querySelectorAll('.color-section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                const body = document.body;
+
+                const observerOptions = {
+                    rootMargin: '-45% 0px -45% 0px', // Wider trigger zone for Safari
+                    threshold: [0, 0.1]
+                };
+
+                const dropdownContainers = document.querySelectorAll('.mobile-dropdown-container');
+                const dropdownLinks = document.querySelectorAll('.mobile-dropdown-content a');
                 dropdownContainers.forEach(container => {
                     const trigger = container.querySelector('span');
                     trigger?.addEventListener('click', (e) => {
@@ -120,12 +130,43 @@ import '@fontsource-variable/source-code-pro';
                         }
                     });
                 });
+
                 dropdownLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         dropdownContainers.forEach(c => c.classList.remove('is-open'));
                     });
                 });
-            });
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target as HTMLElement;
+                            const newColor = el.getAttribute('data-color') ?? '#0000fe';
+
+                            // Wrap in an animation frame for buttery smooth Safari updates
+                            requestAnimationFrame(() => {
+                                body.style.color = newColor;
+                                // ... rest of your nav logic
+                            });
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(s => observer.observe(s));
+
+                // 5. Mobile Dropdown Logic
+                    const dropdowns = document.querySelectorAll('.mobile-dropdown-container');
+                    dropdowns.forEach(container => {
+                        const trigger = container.querySelector('span');
+                        trigger?.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            dropdowns.forEach(c => c !== container && c.classList.remove('is-open'));
+                            container.classList.toggle('is-open');
+                        });
+                    });
+                    document.addEventListener('click', () => dropdowns.forEach(c => c.classList.remove('is-open')));
+                });
+
         </script>
     </body>
 </html>

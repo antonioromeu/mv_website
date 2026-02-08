@@ -38,6 +38,12 @@
     }
 }
 
+.nav-link, body {
+    /* Forces Safari to use hardware acceleration for color transitions */
+    will-change: color;
+    -webkit-font-smoothing: antialiased;
+}
+
 /* --- Section & Scroll Snapping --- */
 .color-section {
     /* MOBILE: Use the base --nav-height */
