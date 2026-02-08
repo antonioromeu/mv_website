@@ -3,12 +3,36 @@ const { title } = Astro.props;
 import '../styles/global.css'
 import '@fontsource-variable/source-code-pro';
 const base = import.meta.env.BASE_URL;
+
+// 1. Data Structure to prevent HTML repetition
+const navItems = [
+  {
+    title: "Films",
+    links: [
+      { label: "Chuvas de Verão", href: "#cdv-section" },
+      { label: "Fora da Bouça", href: "#fdb-section" },
+      { label: "Rio Torto", href: "#rt-section" },
+    ]
+  },
+  {
+    title: "Photos",
+    links: [{ label: "Coming Soon", href: null }]
+  },
+  {
+    title: "Info",
+    links: [
+      { label: "About Me", href: "#about-section" },
+      { label: "Festivals & Awards", href: "#festivals-awards-section" },
+      { label: "Assistant Director", href: "#assistant-director-section" },
+    ]
+  }
+];
 ---
 
 <html lang="en" class="scroll-smooth antialiased [text-size-adjust:100%]">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
         <link rel="apple-touch-icon" sizes="180x180" href={`${base}/favicon_io/apple-touch-icon.png`}>
         <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon_io/favicon-32x32.png`}>
         <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon_io/favicon-16x16.png`}>
@@ -16,87 +40,68 @@ const base = import.meta.env.BASE_URL;
         <title>{title}</title>
     </head>
 
-    <body class="overscroll-y-none">
-        <nav class="sticky top-0 z-50 w-full bg-inherit transition-colors duration-500">
+    <body class="overscroll-y-none transition-colors duration-500">
+        <nav class="sticky top-0 z-50 w-full bg-inherit">
             <div 
                 style="height: var(--nav-height);"
-                class="w-full px-[3.5vw] flex flex-col md:flex-row items-start justify-center md:justify-between pt-[2vh] md:pt-[4vh] gap-6 md:gap-0"
+                class="
+                    w-full px-[3.5vw] pt-[2vh] flex flex-col items-start justify-center gap-6
+                    md:flex-row md:justify-between md:pt-[4vh] md:gap-0"
             >
                 <a 
                     href="javascript:void(0)" 
                     onclick="window.scrollTo({top: 0, behavior: 'smooth'}); history.pushState('', document.title, window.location.pathname);" 
-                    class="nav-link group block no_uderline text-4xl md:text-6xl font-black tracking-tighter leading-[0.5] text-current transition-colors duration-500"
+                    class="
+                        nav-link group block no_uderline text-4xl font-black tracking-tighter leading-[0.5] text-current
+                        md:text-6xl"
                 >
                     Mário Veloso<br>
-                    <span class="text-sm md:text-xl font-normal tracking-[0.0em]">Filmmaker, Portugal</span>
+                    <span class="
+                        text-sm font-normal tracking-[0.0em]
+                        md:text-xl"
+                    >
+                        Filmmaker, Portugal
+                    </span>
                 </a>
 
-                <!-- NAV BAR DESKTOP VIEW -->
-                 <div class="hidden md:flex w-auto text-lg justify-start tracking-widest font-bold text-current gap-[13vw]">
-                    <div class="relative group cursor-pointer">
-                        <span class="nav-link hover:opacity-50 pb-2 block transition-opacity">Films</span>
-                        <div class="hidden md:block absolute left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
-                            <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
-                                <a href="#cdv-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Chuvas de Verão</a>
-                                <a href="#fdb-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Fora da Bouça</a>
-                                <a href="#rt-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Rio Torto</a>
+                <div class="hidden md:flex text-lg font-bold text-current gap-[13vw] tracking-widest">
+                    {navItems.map((item, index) => (
+                        <div class="relative group cursor-pointer">
+                            <span class="nav-link hover:opacity-50 pb-2 block transition-opacity">{item.title}</span>
+                            <div class={
+                                `absolute pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-64 z-50 
+                                ${index === navItems.length - 1 ? 'right-0' : 'left-0'}`
+                            }>
+                                <div class="flex flex-col gap-4 bg-(--color-off-white) border border-current border-opacity-10 p-6 shadow-xl backdrop-blur-md">
+                                    {item.links.map(link => (
+                                        link.href ? 
+                                        <a href={link.href} class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity whitespace-nowrap">{link.label}</a> : 
+                                        <span class="text-xs tracking-[0.2em] opacity-50 whitespace-nowrap">{link.label}</span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="relative group cursor-pointer">
-                        <span class="nav-link hover:opacity-50 pb-2 block transition-opacity">Photos</span>
-                        <div class="hidden md:block absolute left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
-                            <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
-                                <span class="text-xs tracking-[0.2em] transition-opacity">Coming Soon</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative group cursor-pointer">
-                        <span class="nav-link hover:opacity-50 pb-2 block transition-opacity">Info</span>
-                        <div class="hidden md:block absolute right-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-50">
-                            <div class="flex flex-col gap-4 bg-inherit border border-current border-opacity-10 p-6 backdrop-blur-md">
-                                <a href="#about-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">About Me</a>
-                                <a href="#festivals-awards-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Festivals & Awards</a>
-                                <a href="#assistant-director-section" class="text-xs tracking-[0.2em] hover:opacity-50 transition-opacity">Assistant Director</a>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-                <!-- NAV BAR MOBILE VIEW -->
-                 <div class="flex w-full md:hidden text-sm tracking-widest justify-between font-bold text-current">
-                    <div class="relative mobile-dropdown-container">
-                        <span class="nav-link cursor-pointer transition-opacity active:opacity-50">Films</span>
-                        <div class="mobile-dropdown-content pointer-events-none absolute left-0 top-full pt-4 opacity-0 scale-95 transition-all duration-300 min-w-40 z-60 visibility-hidden">
-                            <div class="flex flex-col gap-4 bg-(--color-off-white) border border-current border-opacity-20 p-5 shadow-xl text-current">
-                                <a href="#cdv-section" class="text-[10px] tracking-[0.2em]">Chuvas de Verão</a>
-                                <a href="#fdb-section" class="text-[10px] tracking-[0.2em]">Fora da Bouça</a>
-                                <a href="#rt-section" class="text-[10px] tracking-[0.2em]">Rio Torto</a>
+                <div class="flex w-full md:hidden text-sm font-bold text-current justify-between tracking-widest">
+                    {navItems.map((item, index) => ( // Added index here
+                        <div class="relative mobile-dropdown-container">
+                            <span class="nav-link cursor-pointer transition-opacity active:opacity-50">{item.title}</span>
+                            <div class={
+                                `mobile-dropdown-content pointer-events-none absolute top-full pt-4 opacity-0 scale-95 transition-all duration-300 min-w-40 z-60 
+                                ${index === navItems.length - 1 ? 'right-0' : 'left-0'}`
+                            }>
+                                <div class="flex flex-col gap-4 bg-(--color-off-white) border border-current border-opacity-20 p-5 shadow-xl text-current backdrop-blur-md">
+                                    {item.links.map(link => (
+                                        link.href ? 
+                                        <a href={link.href} class="text-[10px] tracking-[0.2em] whitespace-nowrap">{link.label}</a> : 
+                                        <span class="text-[10px] tracking-[0.2em] opacity-50 whitespace-nowrap">{link.label}</span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="relative mobile-dropdown-container">
-                        <span class="nav-link cursor-pointer transition-opacity active:opacity-50">Photos</span>
-                        <div class="mobile-dropdown-content pointer-events-none absolute left-0 top-full pt-4 opacity-0 scale-95 transition-all duration-300 min-w-40 z-60 visibility-hidden">
-                            <div class="flex flex-col gap-4 bg-(--color-off-white) border border-current border-opacity-20 p-5 shadow-xl text-current">
-                                <span class="text-[10px] tracking-[0.2em] transition-opacity">Coming Soon</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative mobile-dropdown-container">
-                        <span class="nav-link cursor-pointer transition-opacity active:opacity-50">Info</span>
-                        <div class="mobile-dropdown-content pointer-events-none absolute right-0 top-full pt-4 opacity-0 scale-95 transition-all duration-300 min-w-40 z-60 visibility-hidden">
-                            <div class="flex flex-col gap-4 bg-(--color-off-white) border border-current border-opacity-20 p-5 shadow-xl text-current">
-                                <a href="#about-section" class="text-[10px] tracking-[0.2em]">About Me</a>
-                                <a href="#festivals-awards-section" class="text-[10px] tracking-[0.2em]">Festivals & Awards</a>
-                                <a href="#assistant-director-section" class="text-[10px] tracking-[0.2em]">Assistant Director</a>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </nav>
@@ -107,66 +112,38 @@ const base = import.meta.env.BASE_URL;
         
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const sections = document.querySelectorAll('.color-section');
-                const navLinks = document.querySelectorAll('.nav-link');
                 const body = document.body;
+                const dropdowns = document.querySelectorAll('.mobile-dropdown-container');
 
-                const observerOptions = {
-                    rootMargin: '-45% 0px -45% 0px', // Wider trigger zone for Safari
-                    threshold: [0, 0.1]
-                };
-
-                const dropdownContainers = document.querySelectorAll('.mobile-dropdown-container');
-                const dropdownLinks = document.querySelectorAll('.mobile-dropdown-content a');
-                dropdownContainers.forEach(container => {
-                    const trigger = container.querySelector('span');
-                    trigger?.addEventListener('click', (e) => {
-                        if (window.innerWidth < 768) {
-                            e.stopPropagation(); 
-                            dropdownContainers.forEach(c => {
-                                if (c !== container) c.classList.remove('is-open');
-                            });
-                            container.classList.toggle('is-open');
-                        }
-                    });
-                });
-
-                dropdownLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        dropdownContainers.forEach(c => c.classList.remove('is-open'));
-                    });
-                });
-                
+                // 1. Optimized Observer
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            const el = entry.target as HTMLElement;
-                            const newColor = el.getAttribute('data-color') ?? '#0000fe';
-
-                            // Wrap in an animation frame for buttery smooth Safari updates
-                            requestAnimationFrame(() => {
-                                body.style.color = newColor;
-                                // ... rest of your nav logic
-                            });
+                            const newColor = (entry.target as HTMLElement).getAttribute('data-color') ?? '#0000fe';
+                            requestAnimationFrame(() => body.style.color = newColor);
                         }
                     });
-                }, observerOptions);
+                }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.1] });
 
-                sections.forEach(s => observer.observe(s));
+                document.querySelectorAll('.color-section').forEach(s => observer.observe(s));
 
-                // 5. Mobile Dropdown Logic
-                    const dropdowns = document.querySelectorAll('.mobile-dropdown-container');
-                    dropdowns.forEach(container => {
-                        const trigger = container.querySelector('span');
-                        trigger?.addEventListener('click', (e) => {
+                // 2. Simplified Dropdown Logic
+                const closeAll = () => dropdowns.forEach(d => d.classList.remove('is-open'));
+
+                dropdowns.forEach(container => {
+                    container.querySelector('span')?.addEventListener('click', (e) => {
+                        if (window.innerWidth < 768) {
                             e.stopPropagation();
-                            dropdowns.forEach(c => c !== container && c.classList.remove('is-open'));
-                            container.classList.toggle('is-open');
-                        });
+                            const isOpen = container.classList.contains('is-open');
+                            closeAll();
+                            if (!isOpen) container.classList.add('is-open');
+                        }
                     });
-                    document.addEventListener('click', () => dropdowns.forEach(c => c.classList.remove('is-open')));
                 });
 
+                document.addEventListener('click', closeAll);
+                document.querySelectorAll('.mobile-dropdown-content a').forEach(a => a.addEventListener('click', closeAll));
+            });
         </script>
     </body>
 </html>
