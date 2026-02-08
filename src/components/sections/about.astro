@@ -6,12 +6,12 @@ import about_mp4 from '../../assets/videos/about.mp4';
 <section 
     id="about-section" 
     data-color="var(--color-blue)" 
-    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row md:items-center overflow-hidden shrink-0"
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col overflow-hidden shrink-0
+           md:flex-row md:items-center"
     style="scroll-margin-top: var(--nav-height);"
 >
     <!-- Mobile view -->
-    <div class="flex flex-col md:hidden w-full h-full overflow-hidden">
-        
+    <div class="flex flex-col w-full h-full overflow-hidden md:hidden">
         <!-- About Me section -->
         <div class="w-full flex justify-start">
             <div class="w-full px-[3.5vw]">
@@ -28,7 +28,6 @@ import about_mp4 from '../../assets/videos/about.mp4';
         
         <!-- Reach Out & video loop section -->
         <div class="w-full flex-1 flex flex-col overflow-hidden">
-            
             <!-- Reach Out section -->
             <div class="w-full pt-[1.5vh] pl-[3.5vw]">
                 <span class="block font-bold text-xs">Reach Out</span>
@@ -41,13 +40,7 @@ import about_mp4 from '../../assets/videos/about.mp4';
             
             <!-- Video loop section -->
             <div class="flex-1 flex justify-end items-end min-h-0">
-                <video 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline 
-                    class="h-full w-auto object-bottom-right object-contain block"
-                >
+                <video autoplay muted loop playsinline class="h-full w-auto object-bottom-right object-contain block">
                     <source src={about_mp4} type="video/mp4">
                 </video>
             </div>
@@ -55,7 +48,7 @@ import about_mp4 from '../../assets/videos/about.mp4';
     </div>
 
     <!-- Desktop view -->
-    <div class="hidden md:flex flex-row w-full h-full">
+    <div class="hidden flex-row w-full h-full md:flex">
         <!-- About Me section -->
         <div class="w-[50vw] pt-[7.5vh] pl-[3.5vw] pr-[3.5vw]">
             <span class="block font-bold text-lg">About Me</span>
@@ -76,13 +69,7 @@ import about_mp4 from '../../assets/videos/about.mp4';
         
         <!-- Image section -->
         <div class="w-[50vw] flex justify-end items-end overflow-hidden">
-            <video 
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                class="w-full h-auto object-contain block"
-            >
+            <video autoplay muted loop playsinline class="w-full h-auto object-contain block">
                 <source src={about_mp4} type="video/mp4">
             </video>
         </div>

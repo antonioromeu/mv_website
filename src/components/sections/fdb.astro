@@ -7,16 +7,19 @@ import fdb_svg from '../../assets/vectors/fdb.svg?raw';
 <section 
     id="fdb-section"
     data-color="var(--color-pink)"
-    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col md:flex-row overflow-hidden shrink-0"
+    class="color-section h-[calc(100vh-var(--nav-height))] w-full snap-start flex flex-col overflow-hidden shrink-0
+           md:flex-row"
     style="scroll-margin-top: var(--nav-height);"
 >
     <!-- SVG section -->
-    <div class="w-full md:w-[50vw] pr-[10vw] pl-[3.5vw] md:px-0 pt-[6vh] md:pt-0 md:pb-[2vw] md:pl-[3.5vw] md:pr-[3.5vw] flex items-start md:items-end [&>svg]:w-full [&>svg]:h-auto">
+    <div class="w-full pr-[10vw] pl-[3.5vw] flex items-start [&>svg]:w-full [&>svg]:h-auto
+                md:w-[50vw] md:px-0 pt-[6vh] md:pt-0 md:pb-[2vw] md:pl-[3.5vw] md:pr-[3.5vw] md:items-end">
         <Fragment set:html={fdb_svg} />
     </div>
 
     <!-- Still section -->
-    <div class="w-full md:w-[50vw] pr-[3.5vw] pl-[10vw] md:pr-[3.5vw] md:pl-[2.5vw] flex justify-end md:justify-center items-start pt-[2.5vh] md:pt-0 shrink-0">
+    <div class="w-full pr-[3.5vw] pl-[10vw] flex justify-end items-start pt-[2.5vh] shrink-0
+                md:w-[50vw] md:pr-[3.5vw] md:pl-[2.5vw] md:justify-center md:pt-0">
         <div class="relative w-fit">
             <TrailerCard 
                 vimeoId="947903397"
@@ -25,6 +28,8 @@ import fdb_svg from '../../assets/vectors/fdb.svg?raw';
                 color="var(--color-pink)"
                 type="film"
             />
-            <span class="absolute bottom-0 right-0 translate-y-full text-[9px] md:text-xs tracking-widest">Portugal, 2021</span>
+            <span class="absolute bottom-0 right-0 translate-y-full text-[9px] tracking-widest
+                         md:text-xs">Portugal, 2021</span>
         </div>
     </div>
+</section>
