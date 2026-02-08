@@ -9,7 +9,7 @@
     --font-mono: "Source Code Pro Variable", monospace;
     --spacing-gutter: 3.5vw;
     --transition-speed: 0.4s ease-in-out;
-    --nav-height: 20vh; /* MOBILE NAV HEIGHT */
+    --nav-height: 15dvh; /* MOBILE NAV HEIGHT */
 }
 
 @media (min-width: 768px) {
@@ -22,6 +22,7 @@
     html {
         scroll-snap-type: y mandatory; 
         scroll-behavior: smooth;
+        overscroll-behavior-y: none;
     }
 
     body {
@@ -41,9 +42,23 @@
 
 /* --- Section & Scroll Snapping --- */
 .color-section {
-    scroll-margin-top: var(--nav-height);
+    /* Snapping logic */
     scroll-snap-align: start;
+    scroll-snap-stop: always; /* Forces stop at every section */
+    
+    /* Height & Containment */
     width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+
+    /* Layout */
+    /* display: flex;
+    flex-direction: column; */
+
+    /* Since height is 100dvh, snap to 0 */
+    scroll-margin-top: 0;
+    /* scroll-margin-top: var(--nav-height); */
 }
 
 /* --- SVG Color Sync --- */
