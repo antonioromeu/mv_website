@@ -8,20 +8,18 @@
     --color-green: #61b232;
     --font-mono: "Source Code Pro Variable", monospace;
     --spacing-gutter: 3.5vw;
-    /* MOBILE BASE: Define your mobile nav height first */
-    --nav-height: 20vh;
+    --transition-speed: 0.4s ease-in-out;
+    --nav-height: 20vh; /* MOBILE NAV HEIGHT */
 }
 
-/* DESKTOP OVERRIDE: Update the variable for larger screens */
 @media (min-width: 768px) {
     :root {
-        --nav-height: 15vh;
+        --nav-height: 15vh; /* DESKTOP NAV HEIGHT OVERRIDE */
     }
 }
 
 @layer base {
     html {
-        /* Mobile: Smooth scrolling without snap traps */
         scroll-snap-type: y mandatory; 
         scroll-behavior: smooth;
     }
@@ -30,42 +28,36 @@
         background-color: var(--color-off-white);
         font-family: var(--font-mono);
         color: var(--color-blue);
-        transition: color 0.4s ease-in-out;
+        margin: 0;
+    }
+
+    body, .nav-link {
+        will-change: color;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        margin: 0;
-        /* padding: 0; */
+        transition: color var(--transition-speed);
     }
-}
-
-.nav-link, body {
-    /* Forces Safari to use hardware acceleration for color transitions */
-    will-change: color;
-    -webkit-font-smoothing: antialiased;
 }
 
 /* --- Section & Scroll Snapping --- */
 .color-section {
-    /* MOBILE: Use the base --nav-height */
     scroll-margin-top: var(--nav-height);
-    /* Syncs with your 10vh (mobile) and 15vh (desktop) nav heights */
     scroll-snap-align: start;
+    width: 100%;
 }
 
 /* --- SVG Color Sync --- */
-/* This ensures any SVG in a color section follows the current text color */
+.color-section svg, 
+.color-section path {
+    fill: currentColor;
+    stroke: none;
+    transition: fill var(--transition-speed);
+}
+
 .color-section svg {
     display: block;
     width: 100%;
     height: auto;
-    fill: currentColor;
-    stroke: none;
-    transition: fill 0.4s ease-in-out;
-}
-
-.color-section path {
-    fill: currentColor;
-    stroke: none;
 }
 
 /* --- Utilities --- */
