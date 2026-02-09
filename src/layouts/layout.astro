@@ -1,5 +1,5 @@
 ---
-const { title, lang = 'pt' } = Astro.props; // Default to PT
+const { title, lang = 'en' } = Astro.props; // Default to EN
 import '../styles/global.css'
 import '@fontsource-variable/source-code-pro';
 const base = import.meta.env.BASE_URL;
@@ -154,7 +154,7 @@ const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '');
                     });
                 }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.1] });
 
-                document.querySelectorAll('.color-section').forEach(s => observer.observe(s));
+                document.querySelectorAll('.snap-section').forEach(s => observer.observe(s));
 
                 // 2. Simplified Dropdown Logic
                 const closeAll = () => dropdowns.forEach(d => d.classList.remove('is-open'));

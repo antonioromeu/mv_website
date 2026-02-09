@@ -6,13 +6,13 @@ import '../../styles/arrow.css';
 <section 
     id="landing_page" 
     data-color="var(--color-blue)" 
-    class="color-section h-svh w-full flex flex-col items-stretch overflow-hidden snap-start
+    class="snap-section items-stretch
            md:flex-row md:h-screen md:items-end"
     style="padding-top: var(--nav-height);"
 >
     <!-- Text section -->
     <div class="w-full flex-1 px-[3.5vw] pb-[2vh] order-1 flex flex-col justify-center
-                md:h-full md:pl-[1.5vw] md:pb-[3vh] md:order-2 md:flex-1 md:justify-end">
+                md:min-h-0 md:flex-1 md:pl-[1.5vw] md:pb-[3vh] md:order-2 md:justify-end">
         <div class="flex flex-col mb-4
                     md:mb-6">
             <span class="block text-sm md:text-lg">Coming Soon</span>
@@ -37,7 +37,7 @@ import '../../styles/arrow.css';
     </div>
 
     <!-- Animated arrow -->
-    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none flex justify-center items-center">
+    <div class="absolute pb-[2vh] left-1/2 -translate-x-1/2 pointer-events-none flex justify-center items-center">
         <div class="line-container">
             <div class="line"></div>
         </div>
@@ -49,7 +49,7 @@ import '../../styles/arrow.css';
     @media (max-width: 768px) {
         .arrow-down {
             transform: scale(0.7);
-            bottom: 10px;
+            bottom: 5px;
         }
     }
 </style>
