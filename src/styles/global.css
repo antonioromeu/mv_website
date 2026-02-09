@@ -23,6 +23,7 @@
         scroll-snap-type: y mandatory; 
         scroll-behavior: smooth;
         overscroll-behavior-y: none;
+        height: -webkit-fill-available;
     }
 
     body {
@@ -30,6 +31,8 @@
         font-family: var(--font-mono);
         color: var(--color-blue);
         margin: 0;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 
     body, .nav-link {
@@ -37,6 +40,12 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         transition: color var(--transition-speed);
+    }
+}
+
+@layer utilities {
+    .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
     }
 }
 
