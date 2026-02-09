@@ -65,7 +65,7 @@
 
     /* Height: Use lvh to go behind mobile bars and vh for laptops */
     width: 100%;
-    height: 100lvh;
+    height: 100svh;
     
     /* Layout: Forces children to stack and stay inside the box */
     display: flex;
