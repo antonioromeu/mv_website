@@ -76,12 +76,16 @@
     /* GPU Boost for smooth scrolling */
     will-change: transform;
     transform: translateZ(0);
+
+    /* ADD THIS: This creates a "padding floor" that only exists on mobile */
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 @media (min-width: 768px) {
     .snap-section {
         height: 100vh;
         flex-direction: row; /* Match your desktop side-by-side design */
+        padding-bottom: 0; /* No safe area needed on laptops */
     }
 }
 
@@ -94,10 +98,6 @@
 
 /* 5. UTILITIES */
 @layer utilities {
-    .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
-    }
-    
     .hide-scrollbar {
         scrollbar-width: none;
         &::-webkit-scrollbar { display: none; }
