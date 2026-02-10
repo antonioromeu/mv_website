@@ -62,10 +62,10 @@ const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '');
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-        <link rel="apple-touch-icon" sizes="180x180" href={`${base}/favicon_io/apple-touch-icon.png`}>
-        <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon_io/favicon-32x32.png`}>
-        <link rel="icon" type="image/png" sizes="16x16" href={`${base}/favicon_io/favicon-16x16.png`}>
-        <link rel="manifest" href={`${base}/favicon_io/site.webmanifest`}>
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+        <link rel="manifest" href="/favicon_io/site.webmanifest">
         <title>{title}</title>
     </head>
 
@@ -78,11 +78,9 @@ const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '');
                     md:flex-row md:justify-between md:pt-[4vh] md:gap-0"
             >
                 <a 
-                    href="javascript:void(0)" 
-                    onclick="window.scrollTo({top: 0, behavior: 'smooth'}); history.pushState('', document.title, window.location.pathname);" 
-                    class="
-                        nav-link group block no_uderline text-4xl font-black tracking-tighter leading-[0.5] text-current
-                        md:text-6xl"
+                    href="/" 
+                    onclick="handleLogoClick(event)"
+                    class="nav-link group block no-underline text-4xl font-black tracking-tighter leading-[0.5] text-current md:text-6xl"
                 >
                     Mário Veloso<br>
                     <span class="
@@ -140,6 +138,22 @@ const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '');
         </main>
         
         <script>
+            declare global {
+                interface Window {
+                    handleLogoClick: (e: MouseEvent) => void;
+                }
+            }
+
+            window.handleLogoClick = function(event: MouseEvent) {
+                if (event) event.preventDefault(); // Stop the default jump
+                document.body.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                const cleanUrl = window.location.origin + window.location.pathname;
+                window.history.pushState({}, document.title, cleanUrl);
+            };
+
             document.addEventListener('DOMContentLoaded', () => {
                 const body = document.body;
                 const dropdowns = document.querySelectorAll('.mobile-dropdown-container');

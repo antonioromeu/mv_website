@@ -33,8 +33,6 @@ import VideoModal from '../components/video_modal.astro';
                 // This creates a "detection strip" across the viewport.
                 // -20% from top and -40% from bottom ensures the color 
                 // changes when the section is truly the "hero" of the screen.
-                // rootMargin: '-49% 0px -49% 0px',
-                // threshold: 0
                 rootMargin: '-45% 0px -45% 0px',
                 threshold: [0, 0.1, 0.2] // Adding multiple thresholds helps Safari stay "alert"
             };
