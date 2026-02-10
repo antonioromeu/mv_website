@@ -9,8 +9,8 @@ export default defineConfig({
     // 4. Change '_astro' to 'assets' to avoid GitHub's Jekyll filter
     assets: 'assets'
   },
-  site: 'https://antonioromeu.github.io', 
-  base: '/mv_website',
+  site: 'http://marioveloso.pt', 
+//   base: '/mv_website',
   outDir: 'docs',
   vite: {
     plugins: [tailwindcss()]
