@@ -1,4 +1,20 @@
-export const adContent = {
+interface Credit {
+    title: string;
+    director: string;
+    type: string;
+    production: string;
+    role: string;
+    date: string;
+    status?: string; // Optional
+    link?: string;   // Optional
+}
+
+interface ADContent {
+    title: string;
+    credits: Credit[];
+}
+
+export const adContent: Record<'en' | 'pt', ADContent> = {
     en: {
         title: "Assistant Director",
         credits: [

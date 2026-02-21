@@ -13,7 +13,7 @@ interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = rtContent[lang];
 
 // Logic to select the SVG set
@@ -29,7 +29,7 @@ const svgs = {
     data-color="var(--color-green)" 
     class="snap-section shrink-0
            md:flex-row md:items-center"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <!-- Mobile view -->
     <div class="flex flex-col w-full h-full pt-[8vh] items-center overflow-hidden md:hidden">
@@ -59,13 +59,13 @@ const svgs = {
                     imageSrc={rt_png}
                     alt={t.altText}
                     color="var(--color-green)"
-                    type="film"
+                    type={t.type as "trailer" | "film"}
                 />
             </div>
         </div>
     
         <div class="w-[50vw] pr-[3.5vw] pl-[1.5vw] flex flex-1 items-end overflow-hidden">
-            <Fragment set:html={svgs.landscape}
+            <Fragment set:html={svgs.landscape} />
         </div>
     </div>
 </section>

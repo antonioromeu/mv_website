@@ -5,12 +5,18 @@ interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = festivalsContent[lang];
 
 // Split data for mobile pages (e.g., first 15 on page 1, rest on page 2)
 const page1 = t.items.slice(0, 15);
 const page2 = t.items.slice(15);
+
+// Dynamically chunk festivals for mobile (15 per page)
+const perPage = 15;
+const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i) =>
+    t.items.slice(i * perPage, i * perPage + perPage)
+);
 ---
 
 <section 
@@ -19,7 +25,7 @@ const page2 = t.items.slice(15);
     class="
         snap-section shrink-0
         md:flex-row md:items-center"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <!-- Mobile view  -->
     <div class="flex flex-col w-full h-full overflow-hidden md:hidden">
@@ -33,7 +39,7 @@ const page2 = t.items.slice(15);
         <!-- Scrollable pages container -->
         <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex" id="festivals-scroll">
             <!-- Page 1 -->
-            <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+            <!-- <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
                 <div class="text-[10px] leading-relaxed space-y-[1vh]">
                     {page1.map(item => (
                         <div>
@@ -44,10 +50,10 @@ const page2 = t.items.slice(15);
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> -->
 
             <!-- Page 2 -->
-            <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+            <!-- <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
                 <div class="text-[10px] leading-relaxed space-y-[1vh]">
                     {page2.map(item => (
                         <div>
@@ -57,13 +63,30 @@ const page2 = t.items.slice(15);
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> -->
+            {pages.map((page) => (
+                <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+                    <div class="text-[10px] leading-relaxed space-y-[1vh]">
+                        {page.map(item => (
+                            <div>
+                                {item.year} <strong>{item.event}</strong> {item.loc}
+                                {item.detail && <br />}{item.detail}
+                                {item.award && <br />}<strong>{item.award}</strong>
+                                {item.award2 && <br />}<strong>{item.award2}</strong>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
 
         <!-- Page indicators -->
         <div class="flex justify-center gap-2 py-[2vh]">
-            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current transition-opacity" data-page="0"></div>
-            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current opacity-30 transition-opacity" data-page="1"></div>
+            <!-- <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current transition-opacity" data-page="0"></div>
+            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current opacity-30 transition-opacity" data-page="1"></div> -->
+            {pages.map((_, i) => (
+                <div class="page-indicator-fest w-1.5 h-1.5 rounded-full bg-current transition-opacity opacity-30" data-page={i}></div>
+            ))}
         </div>
     </div>
 
@@ -88,25 +111,25 @@ const page2 = t.items.slice(15);
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Page indicator logic for mobile
+    function initFestivals() {
         const scrollContainer = document.getElementById('festivals-scroll');
-        const indicators = document.querySelectorAll('.page-indicator');
+        const indicators = document.querySelectorAll('.page-indicator-fest');
 
         if (scrollContainer && indicators.length > 0) {
-            scrollContainer.addEventListener('scroll', () => {
-                const scrollLeft = scrollContainer.scrollLeft;
-                const pageWidth = scrollContainer.clientWidth;
-                const currentPage = Math.round(scrollLeft / pageWidth);
+            // Set initial state
+            indicators[0].classList.replace('opacity-30', 'opacity-100');
 
-                indicators.forEach((indicator, index) => {
-                    if (index === currentPage) {
-                        (indicator as HTMLElement).style.opacity = '1';
-                    } else {
-                        (indicator as HTMLElement).style.opacity = '0.3';
-                    }
+            scrollContainer.addEventListener('scroll', () => {
+                const currentPage = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('opacity-100', i === currentPage);
+                    ind.classList.toggle('opacity-30', i !== currentPage);
                 });
-            });
+            }, { passive: true });
         }
-    });
+    }
+
+    // Initialize
+    initFestivals();
+    document.addEventListener('astro:page-load', initFestivals);
 </script>

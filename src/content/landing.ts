@@ -1,4 +1,12 @@
-export const landingContent = {
+interface LandingContent {
+    status: string;
+    title: string;
+    altText: string;
+    description1: string;
+    description2: string;
+}
+
+export const landingContent: Record<'en' | 'pt', LandingContent> = {
     en: {
         status: "Coming Soon",
         title: "Behold the Man",

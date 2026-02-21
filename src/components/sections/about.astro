@@ -6,7 +6,7 @@ interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = aboutContent[lang];
 ---
 
@@ -15,7 +15,7 @@ const t = aboutContent[lang];
     data-color="var(--color-blue)" 
     class="snap-section shrink-0
            md:flex-row md:items-center"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <!-- Mobile view -->
     <div class="flex flex-col w-full h-full overflow-hidden md:hidden">
@@ -39,7 +39,7 @@ const t = aboutContent[lang];
                 <p class="text-[10px] leading-relaxed">
                     <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                     <br>
-                    <a href="https://www.instagram.com/its.a.me_mariov/">Instagram</a>
+                    <a href="https://www.instagram.com/its.a.me_mariov/" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </p>
             </div>
             
@@ -66,7 +66,7 @@ const t = aboutContent[lang];
             <p class="text-xs leading-relaxed">
                 <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                 <br>
-                <a href="https://www.instagram.com/its.a.me_mariov/">Instagram</a>
+                <a href="https://www.instagram.com/its.a.me_mariov/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </p>
         </div>
         

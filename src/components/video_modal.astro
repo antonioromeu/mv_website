@@ -1,6 +1,21 @@
+---
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang } = Astro.props;
+
+const labels = {
+    en: 'Close',
+    pt: 'Fechar'
+};
+
+const t = labels[lang];
+---
+
 <div id="video-modal" class="fixed inset-0 z-100 hidden items-center justify-center bg-black/90 backdrop-blur-xl p-4 md:p-10">
     <button id="close-modal" class="absolute top-8 right-8 tracking-widest text-xs font-bold cursor-pointer transition-all duration-500 ease-in-out hover:opacity-50">
-        [ Close ]
+        [ {t} ]
     </button>
     <div class="w-full max-w-6xl aspect-video bg-black shadow-2xl">
         <iframe id="vimeo-player" src="" class="w-full h-full" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -8,67 +23,59 @@
 </div>
 
 <script>
-    const modal = document.getElementById('video-modal');
-    const playButtons = document.querySelectorAll('.play-button');
-    const closeBtn = document.getElementById('close-modal');
-    const player = document.getElementById('vimeo-player') as HTMLIFrameElement;
+    function initModal() {
+        const modal = document.getElementById('video-modal');
+        const closeBtn = document.getElementById('close-modal');
+        const player = document.getElementById('vimeo-player') as HTMLIFrameElement;
+        const playButtons = document.querySelectorAll('.play-button');
 
-    playButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const isMobile = window.matchMedia("(pointer: coarse)").matches;
+        if (!modal || !player) return;
 
-            // --- MOBILE LOGIC: Handle "First Tap" to show label ---
-            if (isMobile) {
-                if (!button.classList.contains('is-active')) {
-                    // Stop the player from opening on first tap
+        const closeModal = () => {
+            modal.classList.replace('flex', 'hidden');
+            player.src = "";
+            document.body.style.overflow = '';
+            playButtons.forEach(btn => btn.classList.remove('is-active'));
+        };
+
+        playButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const isMobile = window.matchMedia("(pointer: coarse)").matches;
+
+                // Mobile tap-to-reveal logic
+                if (isMobile && !button.classList.contains('is-active')) {
                     e.preventDefault();
                     e.stopPropagation();
-
-                    // Hide labels on all other buttons
                     playButtons.forEach(btn => btn.classList.remove('is-active'));
-                    
-                    // Show label on this button
                     button.classList.add('is-active');
                     return;
                 }
-            }
 
-            // --- PLAYER LOGIC: Runs on second tap (mobile) or first click (desktop) ---
-            const vimeoId = button.getAttribute('data-vimeo-id');
-            const parentSection = button.closest('section');
-            const sectionColor = parentSection?.getAttribute('data-color') || 'white';
+                const vimeoId = button.getAttribute('data-vimeo-id');
+                const parentSection = button.closest('section');
+                const sectionColor = parentSection?.getAttribute('data-color') || 'white';
 
-            if (closeBtn) {
-                closeBtn.style.color = sectionColor;
-            }
-
-            if (player) {
+                if (closeBtn) closeBtn.style.color = sectionColor;
+                
                 player.src = `https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`;
-            }
-            
-            modal?.classList.replace('hidden', 'flex');
-            document.body.style.overflow = 'hidden';
-            
-            // Cleanup: remove active state so it's fresh when modal closes
-            button.classList.remove('is-active');
+                modal.classList.replace('hidden', 'flex');
+                document.body.style.overflow = 'hidden';
+                button.classList.remove('is-active');
+            });
         });
-    });
 
-    const closeModal = () => {
-        modal?.classList.replace('flex', 'hidden');
-        if (player) player.src = "";
-        document.body.style.overflow = '';
-        // Also clean up any lingering active states on buttons
-        playButtons.forEach(btn => btn.classList.remove('is-active'));
-    };
+        closeBtn?.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    closeBtn?.addEventListener('click', closeModal);
-    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        // Global tap listener to clear active states
+        document.addEventListener('click', (e) => {
+            if (!(e.target as Element).closest('.play-button')) {
+                playButtons.forEach(btn => btn.classList.remove('is-active'));
+            }
+        });
+    }
 
-    // Global tap listener: Close any open "Play Film" labels when tapping elsewhere
-    document.addEventListener('click', (e) => {
-        if (!(e.target as Element).closest('.play-button')) {
-            playButtons.forEach(btn => btn.classList.remove('is-active'));
-        }
-    });
+    // Initialize on load and on Astro page swaps
+    initModal();
+    document.addEventListener('astro:page-load', initModal);
 </script>

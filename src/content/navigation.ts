@@ -1,10 +1,19 @@
-// src/content/navigation.ts
 import { layoutContent } from './layout';
 import { cdvContent } from './cdv';
 import { fdbContent } from './fdb';
 import { rtContent } from './rt';
 
-export const getNavItems = (lang: 'en' | 'pt') => {
+interface NavLink {
+    label: string;
+    href: string | null;
+}
+
+interface NavCategory {
+    title: string;
+    links: NavLink[];
+}
+
+export const getNavItems = (lang: 'en' | 'pt'): NavCategory[] => {
     const t = layoutContent[lang];
     const cdv = cdvContent[lang];
     const fdb = fdbContent[lang];

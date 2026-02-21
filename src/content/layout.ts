@@ -1,4 +1,15 @@
-export const layoutContent = {
+interface LayoutContent {
+    films: string;
+    photos: string;
+    info: string;
+    comingSoon: string;
+    about: string;
+    festivals: string;
+    assistant: string;
+    filmmaker: string;
+}
+
+export const layoutContent: Record<'en' | 'pt', LayoutContent> = {
     pt: {
         films: "Filmes",
         photos: "Fotos",

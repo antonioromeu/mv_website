@@ -5,7 +5,7 @@ interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = adContent[lang];
 
 // Helper to chunk credits into pages of 4 for mobile
@@ -21,7 +21,7 @@ const byLabel = lang === 'pt' ? 'de' : 'by';
     data-color="var(--color-blue)" 
     class="snap-section shrink-0
            md:flex-row md:items-center"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <!-- Mobile view -->
     <div class="flex flex-col w-full h-full overflow-hidden md:hidden">
@@ -41,10 +41,10 @@ const byLabel = lang === 'pt' ? 'de' : 'by';
                             <div>
                                 {item.link ? (
                                     <a href={item.link} target="_blank" class="mobile-double-tap no-underline font-bold">
-                                        {item.title} {item.status}
+                                        {item.title}
                                     </a>
                                 ) : (
-                                    <strong>{item.title} {item.status}</strong>
+                                    <strong>{item.title} {item.status && <span>{item.status}</span>}</strong>
                                 )}
                                 <br />{byLabel} {item.director}
                                 <br />{item.type}
@@ -78,10 +78,10 @@ const byLabel = lang === 'pt' ? 'de' : 'by';
                 <div class="break-inside-avoid mb-3">
                     {item.link ? (
                         <a href={item.link} target="_blank" class="hover:underline font-bold">
-                            {item.title} {item.status}
+                            {item.title}
                         </a>
                     ) : (
-                        <strong>{item.title} {item.status}</strong>
+                        <strong>{item.title} {item.status && <span>{item.status}</span>}</strong>
                     )}
                     <br />{byLabel} {item.director}
                     <br />{item.type}
@@ -95,56 +95,48 @@ const byLabel = lang === 'pt' ? 'de' : 'by';
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Page indicator logic for Assistant Director mobile view
+    function initAD() {
         const scrollContainer = document.getElementById('assistant-scroll');
         const indicators = document.querySelectorAll('.page-indicator-ad');
-        if (scrollContainer && indicators.length > 0) {
-            scrollContainer.addEventListener('scroll', () => {
-                const scrollLeft = scrollContainer.scrollLeft;
-                const pageWidth = scrollContainer.clientWidth;
-                const currentPage = Math.round(scrollLeft / pageWidth);
+        const doubleTapLinks = document.querySelectorAll('.mobile-double-tap');
 
-                indicators.forEach((indicator, index) => {
-                    if (index === currentPage) {
-                        (indicator as HTMLElement).style.opacity = '1';
-                    } else {
-                        (indicator as HTMLElement).style.opacity = '0.3';
-                    }
+        // 1. Scroll Indicator Logic
+        if (scrollContainer && indicators.length > 0) {
+            // Set initial state
+            indicators[0].classList.replace('opacity-30', 'opacity-100');
+
+            scrollContainer.addEventListener('scroll', () => {
+                const currentPage = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('opacity-100', i === currentPage);
+                    ind.classList.toggle('opacity-30', i !== currentPage);
                 });
-            });
+            }, { passive: true });
         }
 
-        // Handles the "First Tap = Style, Second Tap = Follow" mobile logic
-        const links = document.querySelectorAll('.mobile-double-tap');
-        links.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Only apply this logic on touch devices / mobile view
+        // 2. Mobile Double Tap Logic
+        doubleTapLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
                 if (window.innerWidth < 768) {
-                    const htmlLink = e.currentTarget as HTMLElement;
-                    
-                    // If the link doesn't have the 'active-link' class yet
-                    if (!htmlLink.classList.contains('active-link')) {
-                        // Prevent the link from opening
+                    const el = e.currentTarget as HTMLElement;
+                    if (!el.classList.contains('active-link')) {
                         e.preventDefault();
-                        
-                        // Remove 'active-link' from all other links first (optional)
-                        links.forEach(l => l.classList.remove('active-link', 'underline'));
-                        
-                        // Add underline and active marker to this one
-                        htmlLink.classList.add('active-link', 'underline');
+                        doubleTapLinks.forEach(l => l.classList.remove('active-link', 'underline'));
+                        el.classList.add('active-link', 'underline');
                     }
-                    // If it already has the class, the browser follows the href normally
                 }
             });
         });
 
-        // Optional: Reset links if the user clicks elsewhere on the screen
+        // Reset links when clicking elsewhere
         document.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement;
-            if (!target.closest('.mobile-double-tap')) {
-                links.forEach(l => l.classList.remove('active-link', 'underline'));
+            if (!(e.target as HTMLElement).closest('.mobile-double-tap')) {
+                doubleTapLinks.forEach(l => l.classList.remove('active-link', 'underline'));
             }
         });
-    });
+    }
+
+    // Initialize
+    initAD();
+    document.addEventListener('astro:page-load', initAD);
 </script>

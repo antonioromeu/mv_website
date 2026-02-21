@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
     vimeoId: string;
-    imageSrc: any;
+    imageSrc: ImageMetadata;
     alt: string;
     color?: string;
     type?: 'trailer' | 'film';
@@ -27,6 +28,9 @@ const label = type === 'film' ? 'Play Film' : 'Play Trailer';
     <Image 
         src={imageSrc} 
         alt={alt} 
+        width={imageSrc.width} 
+        height={imageSrc.height} 
+        quality="high" 
         class="w-full h-auto transition-transform duration-700 group-hover:scale-105 group-[.is-active]:scale-105 block"
     />
 

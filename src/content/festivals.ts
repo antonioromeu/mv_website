@@ -1,4 +1,19 @@
-export const festivalsContent = {
+interface FestivalItem {
+    year: string;
+    event: string;
+    loc: string;
+    detail?: string;  // Optional: only for labs, jury duty, etc.
+    award?: string;   // Optional
+    award2?: string;  // Optional: for when you win two things at once!
+}
+
+// 2. Define the structure for the category
+interface FestivalsContent {
+    title: string;
+    items: FestivalItem[];
+}
+
+export const festivalsContent: Record<'en' | 'pt', FestivalsContent> = {
     en: {
         title: "Festivals & Awards",
         items: [

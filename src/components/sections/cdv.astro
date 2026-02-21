@@ -9,7 +9,7 @@ interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = cdvContent[lang];
 const currentSvg = lang === 'pt' ? cdv_svg_pt : cdv_svg_en;
 ---
@@ -19,7 +19,7 @@ const currentSvg = lang === 'pt' ? cdv_svg_pt : cdv_svg_en;
     data-color="var(--color-orange)" 
     class="snap-section shrink-0
            md:flex-row md:h-screen md:items-center"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <div class="flex flex-col items-stretch w-full h-full
                 md:flex-row md:items-end md:h-auto md:pb-[4vw]">
@@ -33,7 +33,7 @@ const currentSvg = lang === 'pt' ? cdv_svg_pt : cdv_svg_en;
                     imageSrc={cdv_png}
                     alt={t.altText}
                     color="var(--color-orange)"
-                    type="trailer"
+                    type={t.type as "trailer" | "film"}
                 />
                 <span class="absolute bottom-0 right-0 translate-y-full text-[8px] tracking-widest
                              md:text-xs">{t.yearLocation}</span>

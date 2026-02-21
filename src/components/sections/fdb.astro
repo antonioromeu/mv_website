@@ -3,14 +3,13 @@ import TrailerCard from '../trailer_card.astro';
 import fdb_jpg from '../../assets/images/fdb.jpg';
 import fdb_svg_en from '../../assets/vectors/en/fdb.svg?raw';
 import fdb_svg_pt from '../../assets/vectors/pt/fdb.svg?raw';
-
 import { fdbContent } from '../../content/fdb';
 
 interface Props {
     lang: 'en' | 'pt';
 }
 
-const { lang = 'en' } = Astro.props;
+const { lang } = Astro.props;
 const t = fdbContent[lang];
 const currentSvg = lang === 'pt' ? fdb_svg_pt : fdb_svg_en;
 ---
@@ -20,7 +19,7 @@ const currentSvg = lang === 'pt' ? fdb_svg_pt : fdb_svg_en;
     data-color="var(--color-pink)"
     class="snap-section shrink-0
            md:flex-row"
-    style="padding-top: var(--nav-height);"
+    style={`padding-top: var(--nav-height);`}
 >
     <!-- SVG section -->
     <div class="w-full pr-[10vw] pl-[3.5vw] flex items-start [&>svg]:w-full [&>svg]:h-auto
@@ -37,7 +36,7 @@ const currentSvg = lang === 'pt' ? fdb_svg_pt : fdb_svg_en;
                 imageSrc={fdb_jpg}
                 alt={t.altText}
                 color="var(--color-pink)"
-                type="film"
+                type={t.type as "trailer" | "film"}
             />
             <span class="absolute bottom-0 right-0 translate-y-full text-[9px] tracking-widest
                          md:text-xs">{t.yearLocation}</span>

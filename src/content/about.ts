@@ -1,4 +1,10 @@
-export const aboutContent = {
+interface AboutData {
+    title: string;
+    reachOut: string;
+    bio: string[];
+}
+
+export const aboutContent: Record<'en' | 'pt', AboutData> = {
     en: {
         title: "About Me",
         reachOut: "Reach Out",

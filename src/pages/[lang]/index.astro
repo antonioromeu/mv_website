@@ -8,6 +8,7 @@ import About from '../../components/sections/about.astro';
 import FestivalsAwards from '../../components/sections/festivals_awards.astro';
 import AssisstantDirector from '../../components/sections/assistant_director.astro';
 import VideoModal from '../../components/video_modal.astro';
+import { landingContent } from '../../content/landing';
 
 // This function tells Astro to generate both /en/ and /pt/
 export function getStaticPaths() {
@@ -16,18 +17,19 @@ export function getStaticPaths() {
     { params: { lang: 'pt' } },
   ];
 }
-
-// Cast the string to your specific allowed types
-const lang = Astro.params.lang as 'en' | 'pt';
+const { lang } = Astro.params as { lang: 'en' | 'pt' };
+const pageTitle = lang === 'pt' ? "Mário Veloso" : "Mário Veloso";
 ---
 
-<Layout title="Mário Veloso" lang={lang}>
-    <LandingPage lang={lang}/>
-    <ChuvasDeVerao lang={lang}/>
-    <ForaDaBouca lang={lang}/>
-    <RioTorto lang={lang}/>
-    <About lang={lang}/>
-    <FestivalsAwards lang={lang}/>
-    <AssisstantDirector lang={lang}/>
-    <VideoModal />
+<Layout title={pageTitle} lang={lang}>
+    <main>
+        <LandingPage lang={lang}/>
+        <ChuvasDeVerao lang={lang}/>
+        <ForaDaBouca lang={lang}/>
+        <RioTorto lang={lang}/>
+        <About lang={lang}/>
+        <FestivalsAwards lang={lang}/>
+        <AssisstantDirector lang={lang}/>
+    </main>
+    <VideoModal lang={lang} />
 </Layout>
