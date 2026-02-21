@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/layout.astro';
+import LandingPage from '../../components/sections/landing_page.astro';
+import ChuvasDeVerao from '../../components/sections/cdv.astro';
+import ForaDaBouca from '../../components/sections/fdb.astro';
+import RioTorto from '../../components/sections/rt.astro';
+import About from '../../components/sections/about.astro';
+import FestivalsAwards from '../../components/sections/festivals_awards.astro';
+import AssisstantDirector from '../../components/sections/assistant_director.astro';
+import VideoModal from '../../components/video_modal.astro';
+
+// This function tells Astro to generate both /en/ and /pt/
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'pt' } },
+  ];
+}
+
+// Cast the string to your specific allowed types
+const lang = Astro.params.lang as 'en' | 'pt';
+---
+
+<Layout title="Mário Veloso" lang={lang}>
+    <LandingPage lang={lang}/>
+    <ChuvasDeVerao lang={lang}/>
+    <ForaDaBouca lang={lang}/>
+    <RioTorto lang={lang}/>
+    <About lang={lang}/>
+    <FestivalsAwards lang={lang}/>
+    <AssisstantDirector lang={lang}/>
+    <VideoModal />
+</Layout>
