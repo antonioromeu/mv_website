@@ -1,23 +1,25 @@
-<!DOCTYPE html><!-- ---
-import Layout from '../layouts/layout.astro';
-import LandingPage from '../components/sections/landing_page.astro';
-import ChuvasDeVerao from '../components/sections/cdv.astro';
-import ForaDaBouca from '../components/sections/fdb.astro';
-import RioTorto from '../components/sections/rt.astro';
-import About from '../components/sections/about.astro';
-import FestivalsAwards from '../components/sections/festivals_awards.astro';
-import AssisstantDirector from '../components/sections/assistant_director.astro';
-import VideoModal from '../components/video_modal.astro';
+---
+import Layout from '../../layouts/layout.astro';
+import LandingPage from '../../components/sections/landing_page.astro';
+import ChuvasDeVerao from '../../components/sections/cdv.astro';
+import ForaDaBouca from '../../components/sections/fdb.astro';
+import RioTorto from '../../components/sections/rt.astro';
+import About from '../../components/sections/about.astro';
+import FestivalsAwards from '../../components/sections/festivals_awards.astro';
+import AssisstantDirector from '../../components/sections/assistant_director.astro';
+import VideoModal from '../../components/video_modal.astro';
+
+const lang = 'pt';
 ---
 
-<Layout title="Mário Veloso">
-    <LandingPage />
-    <ChuvasDeVerao />
-    <ForaDaBouca />
-    <RioTorto />
-    <About />
-    <FestivalsAwards />
-    <AssisstantDirector />
+<Layout title="Mário Veloso" lang={lang}>
+    <LandingPage lang={lang}/>
+    <ChuvasDeVerao lang={lang}/>
+    <ForaDaBouca lang={lang}/>
+    <RioTorto lang={lang}/>
+    <About lang={lang}/>
+    <FestivalsAwards lang={lang}/>
+    <AssisstantDirector lang={lang}/>
     <VideoModal />
 
     <script>
@@ -69,16 +71,4 @@ import VideoModal from '../components/video_modal.astro';
             sections.forEach(section => observer.observe(section));
         });
     </script>
-</BaseLayout> --><html> <head><title>Mário Veloso</title><meta http-equiv="refresh" content="0;url=/en/"><script>
-            const supportedLangs = ['en', 'pt'];
-            const defaultLang = 'en';
-            
-            // Detect browser language (e.g., "pt-BR" -> "pt")
-            const browserLang = navigator.language.split('-')[0];
-            
-            // Choose target language
-            const targetLang = supportedLangs.includes(browserLang) ? browserLang : defaultLang;
-            
-            // Redirect to the subfolder
-            window.location.pathname = `/${targetLang}/`;
-        </script></head> <body style="background-color: var(--color-off-white);"></body></html>
+</BaseLayout>

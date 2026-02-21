@@ -1,4 +1,4 @@
----
+<!-- ---
 import Layout from '../layouts/layout.astro';
 import LandingPage from '../components/sections/landing_page.astro';
 import ChuvasDeVerao from '../components/sections/cdv.astro';
@@ -69,4 +69,28 @@ import VideoModal from '../components/video_modal.astro';
             sections.forEach(section => observer.observe(section));
         });
     </script>
-</BaseLayout>
+</BaseLayout> -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mário Veloso</title>
+        <meta http-equiv="refresh" content="0;url=/en/" />
+
+        <script is:inline>
+            const supportedLangs = ['en', 'pt'];
+            const defaultLang = 'en';
+            
+            // Detect browser language (e.g., "pt-BR" -> "pt")
+            const browserLang = navigator.language.split('-')[0];
+            
+            // Choose target language
+            const targetLang = supportedLangs.includes(browserLang) ? browserLang : defaultLang;
+            
+            // Redirect to the subfolder
+            window.location.pathname = `/${targetLang}/`;
+        </script>
+    </head>
+    <body style="background-color: var(--color-off-white);">
+    </body>
+</html>

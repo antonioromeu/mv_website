@@ -1,7 +1,18 @@
 ---
 import TrailerCard from '../trailer_card.astro';
 import fdb_jpg from '../../assets/images/fdb.jpg';
-import fdb_svg from '../../assets/vectors/fdb.svg?raw';
+import fdb_svg_en from '../../assets/vectors/en/fdb.svg?raw';
+import fdb_svg_pt from '../../assets/vectors/pt/fdb.svg?raw';
+
+import { fdbContent } from '../../content/fdb';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = fdbContent[lang];
+const currentSvg = lang === 'pt' ? fdb_svg_pt : fdb_svg_en;
 ---
 
 <section 
@@ -14,7 +25,7 @@ import fdb_svg from '../../assets/vectors/fdb.svg?raw';
     <!-- SVG section -->
     <div class="w-full pr-[10vw] pl-[3.5vw] flex items-start [&>svg]:w-full [&>svg]:h-auto
                 md:w-[50vw] md:px-0 pt-[6vh] md:pt-0 md:pb-[2vw] md:pl-[3.5vw] md:pr-[3.5vw] md:items-end">
-        <Fragment set:html={fdb_svg} />
+        <Fragment set:html={currentSvg} />
     </div>
 
     <!-- Still section -->
@@ -24,12 +35,12 @@ import fdb_svg from '../../assets/vectors/fdb.svg?raw';
             <TrailerCard 
                 vimeoId="947903397"
                 imageSrc={fdb_jpg}
-                alt="Fora da Bouça"
+                alt={t.altText}
                 color="var(--color-pink)"
                 type="film"
             />
             <span class="absolute bottom-0 right-0 translate-y-full text-[9px] tracking-widest
-                         md:text-xs">Portugal, 2021</span>
+                         md:text-xs">{t.yearLocation}</span>
         </div>
     </div>
 </section>

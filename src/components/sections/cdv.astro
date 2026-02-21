@@ -1,7 +1,17 @@
 ---
 import TrailerCard from '../trailer_card.astro';
 import cdv_png from '../../assets/images/cdv.png';
-import cdv_svg from '../../assets/vectors/cdv.svg?raw';
+import cdv_svg_en from '../../assets/vectors/en/cdv.svg?raw';
+import cdv_svg_pt from '../../assets/vectors/pt/cdv.svg?raw';
+import { cdvContent } from '../../content/cdv';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = cdvContent[lang];
+const currentSvg = lang === 'pt' ? cdv_svg_pt : cdv_svg_en;
 ---
 
 <section 
@@ -13,6 +23,7 @@ import cdv_svg from '../../assets/vectors/cdv.svg?raw';
 >
     <div class="flex flex-col items-stretch w-full h-full
                 md:flex-row md:items-end md:h-auto md:pb-[4vw]">
+       
         <!-- Still section -->
         <div class="w-full pl-0 pr-[3.5vw] pt-[6vh] flex justify-start shrink-0
                     md:w-[42vw]  md:pr-0 md:justify-center md:pt-[4vh]">
@@ -20,19 +31,19 @@ import cdv_svg from '../../assets/vectors/cdv.svg?raw';
                 <TrailerCard 
                     vimeoId="935462533"
                     imageSrc={cdv_png}
-                    alt="Chuvas de Verão"
+                    alt={t.altText}
                     color="var(--color-orange)"
                     type="trailer"
                 />
                 <span class="absolute bottom-0 right-0 translate-y-full text-[8px] tracking-widest
-                             md:text-xs">Portugal, 2024</span>
+                             md:text-xs">{t.yearLocation}</span>
             </div>
         </div>
     
         <!-- SVG section -->
         <div class="w-full px-[3.5vw]  flex flex-1 items-center overflow-hidden
                     md:w-[58vw] md:px-0 md:pr-[3.5vw] md:pl-[1.5vw] md:items-end">
-            <Fragment set:html={cdv_svg} />
+            <Fragment set:html={currentSvg} />
         </div>
     </div>
 </section>

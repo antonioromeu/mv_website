@@ -1,3 +1,18 @@
+---
+import { festivalsContent } from '../../content/festivals';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = festivalsContent[lang];
+
+// Split data for mobile pages (e.g., first 15 on page 1, rest on page 2)
+const page1 = t.items.slice(0, 15);
+const page2 = t.items.slice(15);
+---
+
 <section 
     id="festivals-awards" 
     data-color="var(--color-blue)" 
@@ -11,7 +26,7 @@
         <!-- Header -->
         <div class="w-full px-[3.5vw] pt-[6vh] pb-[1vh]">
             <div class="border-b border-current pb-[1vh]">
-                <span class="block text-xs font-bold">Festivals & Awards</span>
+                <span class="block text-xs font-bold">{t.title}</span>
             </div>
         </div>
         
@@ -20,111 +35,27 @@
             <!-- Page 1 -->
             <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
                 <div class="text-[10px] leading-relaxed space-y-[1vh]">
-                    <div>
-                        2025 <strong>Doclisboa</strong> Portugal
-                        <br />Arché Lab
-                    </div>
-                    <div>
-                        2025 <strong>Celaya Intl Film Festival</strong> Mexico
-                    </div>
-                    <div>
-                        2025 <strong>EUREKA Univ Film Festival</strong> Colombia
-                    </div>
-                    <div>
-                        2025 <strong>TIFF [Toronto International Film Festival]</strong> Canada
-                        <br />Sponsored Guest
-                    </div>
-                    <div>
-                        2025 <strong>FICUNAM</strong> Mexico
-                    </div>
-                    <div>
-                        2024 <strong>VITA Intl Short Film Festival</strong> China
-                    </div>
-                    <div>
-                        2024 <strong>YMotion</strong> Portugal
-                        <br /><strong>Best Script</strong>
-                    </div>
-                    <div>
-                        2024 <strong>Caminhos do Cinema Português</strong> Portugal
-                    </div>
-                    <div>
-                        2024 <strong>SSIFF [San Sebastian International Film Festival]</strong> Spain
-                    </div>
-                    <div>
-                        2024 <strong>Indielisboa</strong> Portugal
-                    </div>
-                    <div>
-                        2024 <strong>Shortcutz Lisboa</strong> Portugal
-                    </div>
-                    <div>
-                        2023 <strong>Doclisboa</strong> Portugal
-                        <br />Jury Member
-                    </div>
-                    <div>
-                        2022 <strong>Beykoz Kundura</strong> Turkey
-                    </div>
-                    <div>
-                        2022 <strong>Shortage</strong> Portugal
-                    </div>
-                    <div>
-                        2022 <strong>Iconic Images</strong> Lituania
-                    </div>
+                    {page1.map(item => (
+                        <div>
+                            {item.year} <strong>{item.event}</strong> {item.loc}
+                            {item.detail && <br />}{item.detail}
+                            {item.award && <br />}<strong>{item.award}</strong>
+                            {item.award2 && <br />}<strong>{item.award2}</strong>
+                        </div>
+                    ))}
                 </div>
             </div>
 
             <!-- Page 2 -->
             <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
                 <div class="text-[10px] leading-relaxed space-y-[1vh]">
-                    <div>
-                        2022 <strong>Stockholm City Film Festival</strong> Sweden
-                    </div>
-                    <div>
-                        2022 <strong>Couch Film Festival</strong> Canada
-                    </div>
-                    <div>
-                        2022 <strong>Family Film Project</strong> Portugal
-                    </div>
-                    <div>
-                        2022 <strong>Entre Olhares</strong> Portugal
-                    </div>
-                    <div>
-                        2022 <strong>Triste Para Sempre</strong> Portugal
-                    </div>
-                    <div>
-                        2021 <strong>Doclisboa</strong> Portugal
-                        <br /><strong>Green Years Honorable Mention</strong>
-                    </div>
-                    <div>
-                        2021 <strong>Cannes Film Festival</strong> France
-                        <br />Focus Script Lab
-                    </div>
-                    <div>
-                        2020 <strong>Cinema Verite</strong> Iran
-                    </div>
-                    <div>
-                        2020 <strong>Doclisboa</strong> Macau
-                    </div>
-                    <div>
-                        2020 <strong>Doclisboa</strong> Portugal
-                    </div>
-                    <div>
-                        2020 <strong>CineEco</strong> Portugal
-                    </div>
-                    <div>
-                        2020 <strong>Caminhos do Cinema Português</strong> Portugal
-                    </div>
-                    <div>
-                        2020 <strong>YMotion</strong> Portugal
-                        <br /><strong>Best Documentary</strong>
-                    </div>
-                    <div>
-                        2019 <strong>Shortcutz</strong> Portugal
-                    </div>
-                    <div>
-                        2019 <strong>Doclisboa</strong> Portugal
-                        <br /><strong>Fernando Lopes Award for Best First Portuguese Film</strong>
-                        <br /><div class="text-[9.75px] leading-relaxed"><strong>Pedro Fortes Award for Best Portuguese Film in the Green Years</strong> </div>
-                    </div>
+                    {page2.map(item => (
+                        <div>
+                            {item.year} <strong>{item.event}</strong> {item.loc}
+                            {item.detail && <br />}{item.detail}
+                            {item.award && <br />}<strong>{item.award}</strong>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
@@ -140,138 +71,18 @@
     <div class="hidden flex-col w-full h-full pt-[3vh] px-[3.5vw] md:flex">
         <div class="w-full border-b border-current pb-[1vh] mb-[1vh]">
             <div class="flex flex-col">
-                <span class="block font-bold text-lg">Festivals & Awards</span>
+                <span class="block font-bold text-lg">{t.title}</span>
             </div>
         </div>
         <div class="columns-3 gap-10 text-[10px] leading-relaxed">
-            <div class="break-inside-avoid mb-6">
-                2025 <strong>Doclisboa</strong> Portugal
-                <br />Arché Lab
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2025 <strong>Celaya Intl Film Festival</strong> Mexico
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2025 <strong>EUREKA Univ Film Festival</strong> Colombia
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2025 <strong>TIFF [Toronto International Film Festival]</strong> Canada
-                <br />Sponsored Guest
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2025 <strong>FICUNAM</strong> Mexico
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>VITA Intl Short Film Festival</strong> China
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>YMotion</strong> Portugal
-                <br /><strong>Best Script</strong>
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>Caminhos do Cinema Português</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>SSIFF [San Sebastian International Film Festival]</strong> Spain
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>Indielisboa</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2024 <strong>Shortcutz Lisboa</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2023 <strong>Doclisboa</strong> Portugal
-                <br />Jury Member
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Beykoz Kundura</strong> Turkey
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Shortage</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Iconic Images</strong> Lituania
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Stockholm City Film Festival</strong> Sweden
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Couch Film Festival</strong> Canada
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Family Film Project</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Entre Olhares</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2022 <strong>Triste Para Sempre</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2021 <strong>Doclisboa</strong> Portugal
-                <br /><strong>Green Years Honorable Mention</strong>
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2021 <strong>Cannes Film Festival</strong> France
-                <br />Focus Script Lab
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>Cinema Verite</strong> Iran
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>Doclisboa</strong> Macau
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>Doclisboa</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>CineEco</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>Caminhos do Cinema Português</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2020 <strong>YMotion</strong> Portugal
-                <br /><strong>Best Documentary</strong>
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2019 <strong>Shortcutz</strong> Portugal
-            </div>
-
-            <div class="break-inside-avoid mb-6">
-                2019 <strong>Doclisboa</strong> Portugal
-                <br /><strong>Fernando Lopes Award for Best First Portuguese Film</strong>
-                <br /><strong>Pedro Fortes Award for Best Portuguese Film in the Green Years</strong>
-            </div>
+            {t.items.map(item => (
+                <div class="break-inside-avoid mb-6">
+                    {item.year} <strong>{item.event}</strong> {item.loc}
+                    {item.detail && <br />}{item.detail}
+                    {item.award && <br />}<strong>{item.award}</strong>
+                    {item.award2 && <br />}<strong>{item.award2}</strong>
+                </div>
+            ))}
         </div>
     </div>
 </section>

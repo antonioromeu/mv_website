@@ -1,5 +1,13 @@
 ---
 import about_mp4 from '../../assets/videos/about.mp4';
+import { aboutContent } from '../../content/about';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = aboutContent[lang];
 ---
 
 <section 
@@ -14,14 +22,12 @@ import about_mp4 from '../../assets/videos/about.mp4';
         <!-- About Me section -->
         <div class="w-full pt-[3vh] flex justify-start">
             <div class="w-full px-[3.5vw]">
-                <span class="block font-bold text-xs">About Me</span>
-                <p class="text-[10px] leading-relaxed space-y-[1.5vh]">
-                    Interrogating desire and the bodies that inhabit the fringes of collective rituals, Mário Veloso carves out a cinematic territory where the traditions and landscapes of Northern Portugal are pierced by secret and dissident impulses. A filmmaker from Braga, trained at the Lisbon Theatre and Film School and Elías Querejeta Zine Eskola, he investigates the zones of silence and the imaginaries of both individual and collective identity and memory.
-                    <span class="block my-[1.5vh]"></span>
-                    His artistic path, defined by a rigorous and independent creative process, includes <em>Rio Torto</em> (2019), <em>Fora da Bouça</em> // <em>Ours is the Wasteland</em> (2021), and <em>Chuvas de Verão</em> // <em>Summer Rains</em> (2024). These works have established a prestigious international circuit, with screenings at festivals such as San Sebastián, Doclisboa, and IndieLisboa, where his visual language has been met with critical acclaim.
-                    <span class="block my-[1.5vh]"></span>
-                    Combining on-set agility with a singular authorial voice, he has also collaborated as an assistant director on over twenty national and international projects. It is within the duality between the technical precision of large-scale productions and the freedom of his own artistic intervention that Mário Veloso establishes his method—driven by curiosity and by everything that, in the observation of the world, refuses to be revealed.
-                </p>
+                <span class="block font-bold text-xs">{t.title}</span>
+                <div class="text-[10px] leading-relaxed space-y-[1.5vh]">
+                    {t.bio.map((para) => (
+                        <p set:html={para} />
+                    ))}
+                </div>
             </div>
         </div>
         
@@ -29,7 +35,7 @@ import about_mp4 from '../../assets/videos/about.mp4';
         <div class="w-full flex-1 flex flex-col overflow-hidden">
             <!-- Reach Out section -->
             <div class="w-full pt-[2vh] pl-[3.5vw] flex-none">
-                <span class="block font-bold text-xs">Reach Out</span>
+                <span class="block font-bold text-xs">{t.reachOut}</span>
                 <p class="text-[10px] leading-relaxed">
                     <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                     <br>
@@ -50,15 +56,13 @@ import about_mp4 from '../../assets/videos/about.mp4';
     <div class="hidden flex-row w-full h-full md:flex">
         <!-- About Me section -->
         <div class="w-[50vw] pt-[7.5vh] pl-[3.5vw] pr-[3.5vw]">
-            <span class="block font-bold text-lg">About Me</span>
-            <p class="text-xs leading-relaxed space-y-3">
-                Interrogating desire and the bodies that inhabit the fringes of collective rituals, Mário Veloso carves out a cinematic territory where the traditions and landscapes of Northern Portugal are pierced by secret and dissident impulses. A filmmaker from Braga, trained at the Lisbon Theatre and Film School and Elías Querejeta Zine Eskola, he investigates the zones of silence and the imaginaries of both individual and collective identity and memory.
-                <span class="block my-3"></span>
-                His artistic path, defined by a rigorous and independent creative process, includes <em>Rio Torto</em> (2019), <em>Fora da Bouça</em> // <em>Ours is the Wasteland</em> (2021), and <em>Chuvas de Verão</em> // <em>Summer Rains</em> (2024). These works have established a prestigious international circuit, with screenings at festivals such as San Sebastián, Doclisboa, and IndieLisboa, where his visual language has been met with critical acclaim.
-                <span class="block my-3"></span>
-                Combining on-set agility with a singular authorial voice, he has also collaborated as an assistant director on over twenty national and international projects. It is within the duality between the technical precision of large-scale productions and the freedom of his own artistic intervention that Mário Veloso establishes his method—driven by curiosity and by everything that, in the observation of the world, refuses to be revealed.
-            </p>
-            <span class="block font-bold text-lg pt-[6vh]">Reach Out</span>
+            <span class="block font-bold text-lg">{t.title}</span>
+            <div class="text-xs leading-relaxed space-y-3">
+                {t.bio.map((para) => (
+                    <p set:html={para} />
+                ))}
+            </div>
+            <span class="block font-bold text-lg pt-[6vh]">{t.reachOut}</span>
             <p class="text-xs leading-relaxed">
                 <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                 <br>

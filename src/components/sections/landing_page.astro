@@ -1,6 +1,15 @@
 ---
+import { Image } from 'astro:assets';
 import eoh_png from '../../assets/images/eoh.png';
 import '../../styles/arrow.css';
+import { landingContent } from '../../content/landing';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = landingContent[lang]; // Shortcut to the right language
 ---
 
 <section 
@@ -15,14 +24,13 @@ import '../../styles/arrow.css';
                 md:min-h-0 md:flex-1 md:pl-[1.5vw] md:pb-[3vh] md:order-2 md:justify-end">
         <div class="flex flex-col mb-4
                     md:mb-6">
-            <span class="block text-sm md:text-lg">Coming Soon</span>
-            <span class="block text-sm font-bold md:text-lg -mt-1">Behold the Man</span>
+            <span class="block text-sm md:text-lg">{t.status}</span>
+            <span class="block text-sm font-bold md:text-lg -mt-1">{t.title}</span>
         </div>
         <p class="text-[10px] leading-relaxed
                   md:text-xs">
-            As a teenager I learned that desire can also be a wound. I aim to capture that instant: when the body learns devotion and dread in the same breath.
-            <br/>
-            Adolescence arrives as the body awakens, a founding moment when desire can be an experience of the sacred, or an omen of death. The film observes that threshold, giving it a place and form.
+            {t.description1}
+            <br/> {t.description2}
         </p>
     </div>
 
@@ -31,7 +39,7 @@ import '../../styles/arrow.css';
                 md:w-auto md:h-full md:mt-0 md:order-1">
         <img 
             src={eoh_png.src} 
-            alt="Eis o Homem - Still" 
+            alt={t.altText}
             class="w-full h-auto object-contain block m-0 md:w-auto md:h-full" 
             />
     </div>

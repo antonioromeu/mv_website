@@ -1,9 +1,27 @@
 ---
 import TrailerCard from '../trailer_card.astro';
 import rt_png from '../../assets/images/rt.jpg';
-import rt_landscape_svg from '../../assets/vectors/rt_landscape.svg?raw';
-import rt_vertical_1_svg from '../../assets/vectors/rt_vertical_1.svg?raw';
-import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
+import rt_land_en from '../../assets/vectors/en/rt_landscape.svg?raw';
+import rt_land_pt from '../../assets/vectors/pt/rt_landscape.svg?raw';
+import rt_v1_en from '../../assets/vectors/en/rt_vertical_1.svg?raw';
+import rt_v1_pt from '../../assets/vectors/pt/rt_vertical_1.svg?raw';
+import rt_v2_en from '../../assets/vectors/en/rt_vertical_2.svg?raw';
+import rt_v2_pt from '../../assets/vectors/pt/rt_vertical_2.svg?raw';
+import { rtContent } from '../../content/rt';
+
+interface Props {
+    lang: 'en' | 'pt';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = rtContent[lang];
+
+// Logic to select the SVG set
+const svgs = {
+    landscape: lang === 'pt' ? rt_land_pt : rt_land_en,
+    v1: lang === 'pt' ? rt_v1_pt : rt_v1_en,
+    v2: lang === 'pt' ? rt_v2_pt : rt_v2_en,
+};
 ---
 
 <section 
@@ -17,16 +35,16 @@ import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
     <div class="flex flex-col w-full h-full pt-[8vh] items-center overflow-hidden md:hidden">
         <div class="w-full flex justify-start">
             <div class="w-full pl-[15vw] pr-[3.5vw] pb-[1vh]">
-                <Fragment set:html={rt_vertical_1_svg} />
+                <Fragment set:html={svgs.v1} />
             </div>
         </div>
         <div class="relative w-fit px-[3.5vw]">
-            <span class="absolute bottom-0 right-[3.5vw] translate-y-full text-[8px] tracking-widest">Portugal, 2019</span>
-            <TrailerCard vimeoId="947890689" imageSrc={rt_png} alt="Rio Torto" color="var(--color-green)" type="film" />
+            <span class="absolute bottom-0 right-[3.5vw] translate-y-full text-[8px] tracking-widest">{t.yearLocation}</span>
+            <TrailerCard vimeoId="947890689" imageSrc={rt_png} alt={t.altText} color="var(--color-green)" type="film" />
         </div>
         <div class="w-full flex">
             <div class="w-full pt-[2vh] pl-[3.5vw] pr-[50vw]">
-                <Fragment set:html={rt_vertical_2_svg} />
+                <Fragment set:html={svgs.v2} />
             </div>
         </div>
     </div>
@@ -35,11 +53,11 @@ import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
     <div class="hidden flex-row items-end w-full h-auto md:flex">
         <div class="w-[50vw] pl-[3.5vw] pr-[1.5vw] pt-[15vh] flex justify-center shrink-0">
             <div class="relative w-fit">
-                <span class="absolute top-0 left-0 -translate-y-full text-xs tracking-widest ">Portugal, 2019</span>
+                <span class="absolute top-0 left-0 -translate-y-full text-xs tracking-widest ">{t.yearLocation}</span>
                 <TrailerCard 
                     vimeoId="947890689"
                     imageSrc={rt_png}
-                    alt="Rio Torto"
+                    alt={t.altText}
                     color="var(--color-green)"
                     type="film"
                 />
@@ -47,7 +65,7 @@ import rt_vertical_2_svg from '../../assets/vectors/rt_vertical_2.svg?raw';
         </div>
     
         <div class="w-[50vw] pr-[3.5vw] pl-[1.5vw] flex flex-1 items-end overflow-hidden">
-            <Fragment set:html={rt_landscape_svg} />
+            <Fragment set:html={svgs.landscape}
         </div>
     </div>
 </section>
