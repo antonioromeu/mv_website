@@ -55,15 +55,29 @@ const t = aboutContent[lang];
     <!-- Desktop view -->
     <div class="hidden flex-row w-full h-full md:flex">
         <!-- About Me section -->
-        <div class="w-[50vw] pt-[7.5vh] pl-[3.5vw] pr-[3.5vw]">
-            <span class="block font-bold text-lg">{t.title}</span>
-            <div class="text-xs leading-relaxed space-y-3">
+        <div class="w-[50vw] pt-[7.5vh] pl-[3.5vw]
+                    xl:pr-[3.5vw]
+                    2xl:pr-[5vw]">
+            <span class="block font-bold
+                        xl:text-base
+                        2xl:text-lg">
+                {t.title}
+            </span>
+            <div class="text-xs leading-relaxed
+                        xl:text-xs xl:space-y-2
+                        2xl:text-sm 2xl:space-y-4 2xl:leading-[1.75]">
                 {t.bio.map((para) => (
                     <p set:html={para} />
                 ))}
             </div>
-            <span class="block font-bold text-lg pt-[6vh]">{t.reachOut}</span>
-            <p class="text-xs leading-relaxed">
+            <span class="block font-bold pt-[6vh]
+                        xl:text-base
+                        2xl:text-lg">
+                {t.reachOut}
+            </span>
+            <p class="text-xs leading-relaxed
+                      xl:text-xs xl:leading-relaxed
+                      2xl:text-sm 2xl:leading-[1.75]">
                 <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
                 <br>
                 <a href="https://www.instagram.com/its.a.me_mariov/" target="_blank" rel="noopener noreferrer">Instagram</a>

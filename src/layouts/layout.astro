@@ -123,6 +123,7 @@ const togglePath = `/${toggleLang}/`;
                 const sections = document.querySelectorAll('.snap-section');
                 const navLinks = document.querySelectorAll('.nav-link');
                 const dropdowns = document.querySelectorAll('.mobile-dropdown-container');
+                const allLinks = document.querySelectorAll('a[href^="#"], a[href^="/en/#"], a[href^="/pt/#"]');
 
                 // SINGLE OPTIMIZED OBSERVER
                 const observerOptions = {
@@ -165,6 +166,25 @@ const togglePath = `/${toggleLang}/`;
                             const isOpen = container.classList.contains('is-open');
                             closeAll();
                             if (!isOpen) container.classList.add('is-open');
+                        }
+                    });
+                });
+
+                allLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        const href = link.getAttribute('href');
+                        const id = href?.split('#')[1];
+                        if (id) {
+                            const target = document.getElementById(id);
+                            
+                            // 2. Check if the element actually exists on the page
+                            if (target) {
+                                e.preventDefault();
+                                target.scrollIntoView({ behavior: 'smooth' });
+                                
+                                // Update URL hash
+                                window.history.pushState(null, '', `#${id}`);
+                            }
                         }
                     });
                 });

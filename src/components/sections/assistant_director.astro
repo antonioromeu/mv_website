@@ -70,12 +70,20 @@ const byLabel = lang === 'pt' ? 'de' : 'by';
     <div class="hidden flex-col w-full h-full pt-[3vh] px-[3.5vw] md:flex">
         <div class="w-full border-b border-current pb-2 mb-3">
             <div class="flex flex-col">
-                <span class="block font-bold text-lg">{t.title}</span>
+                <span class="block font-bold
+                            xl:text-base
+                            2xl:text-lg">
+                    {t.title}
+                </span>
             </div>
         </div>
-        <div class="columns-4 gap-8 text-[10px] leading-relaxed">
+        <div class="columns-4 gap-8 leading-relaxed
+                    xl:text-2xs
+                    2xl:text-xs">
             {t.credits.map(item => (
-                <div class="break-inside-avoid mb-3">
+                <div class="break-inside-avoid
+                            xl:mb-3
+                            2xl:mb-4">
                     {item.link ? (
                         <a href={item.link} target="_blank" class="hover:underline font-bold">
                             {item.title}

@@ -19,6 +19,11 @@
     }
 }
 
+@theme {
+    --text-2xs: 0.625rem;
+    --text-2xs--line-height: 0.75rem;
+}
+
 /* 2. BASE (HTML/BODY LOCK) */
 @layer base {
     html {
@@ -39,6 +44,7 @@
         /* The body becomes our scroll container */
         overflow-y: auto;
         overflow-x: hidden;
+        scroll-behavior: smooth;
         scroll-snap-type: y mandatory; 
         overscroll-behavior-y: none;
         -webkit-overflow-scrolling: touch;

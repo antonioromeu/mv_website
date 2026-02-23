@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # vscode setting folder
 .vscode/
+
+# Helper for Tailwind prefixes
+prefix_per_device.ts

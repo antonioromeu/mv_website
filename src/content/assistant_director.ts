@@ -20,7 +20,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
         credits: [
             {
                 title: "Massa-Mãe",
-                status: "[PT, Coming soon]",
+                status: "[PT, Coming Soon]",
                 director: "Maria Novo",
                 type: "Short Film",
                 production: "Bingham Bryant & Maria Novo",
@@ -29,7 +29,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "El Espejismo",
-                status: "[PT-ES-US, Coming soon]",
+                status: "[PT-ES-US, Coming Soon]",
                 director: "Bingham Bryant",
                 type: "Feature Film",
                 production: "Terratreme Filmes & Endymion Pro",
@@ -56,7 +56,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Two Nights in Lisbon",
-                status: "[PT, Coming soon]",
+                status: "[PT, Coming Soon]",
                 link: "https://www.imdb.com/title/tt31080111/",
                 director: "Henrique Oliveira",
                 type: "TV Series, 6 episodes",
@@ -74,7 +74,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "April 2023"
             },
             {
-                title: "NewJeans’ Super Shy [KR, 2023]",
+                title: "NewJeans Super Shy [KR, 2023]",
                 link: "https://www.youtube.com/watch?v=ArmDp-zijuc",
                 director: "Heewon Shin",
                 type: "Videoclip",
@@ -138,7 +138,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Os Dias das Coisas Pequenas",
-                status: "[PT, Coming soon]",
+                status: "[PT, Coming Soon]",
                 director: "Catarina Campos de Sousa",
                 type: "Short Film",
                 production: "Filmes do Gerador",
@@ -206,7 +206,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
         credits: [
             {
                 title: "Massa-Mãe",
-                status: "[PT, Em breve]",
+                status: "[PT, Em Breve]",
                 director: "Maria Novo",
                 type: "Curta-metragem",
                 production: "Bingham Bryant & Maria Novo",
@@ -215,7 +215,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "El Espejismo",
-                status: "[PT-ES-US, Em breve]",
+                status: "[PT-ES-US, Em Breve]",
                 director: "Bingham Bryant",
                 type: "Longa-metragem",
                 production: "Terratreme Filmes & Endymion Pro",
@@ -242,7 +242,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Two Nights in Lisbon",
-                status: "[PT, Em breve]",
+                status: "[PT, Em Breve]",
                 link: "https://www.imdb.com/title/tt31080111/",
                 director: "Henrique Oliveira",
                 type: "Série de TV, 6 episódios",
@@ -324,7 +324,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Os Dias das Coisas Pequenas",
-                status: "[PT, Em breve]",
+                status: "[PT, Em Breve]",
                 director: "Catarina Campos de Sousa",
                 type: "Curta-metragem",
                 production: "Filmes do Gerador",

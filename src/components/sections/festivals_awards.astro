@@ -38,32 +38,6 @@ const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i)
         
         <!-- Scrollable pages container -->
         <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex" id="festivals-scroll">
-            <!-- Page 1 -->
-            <!-- <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
-                <div class="text-[10px] leading-relaxed space-y-[1vh]">
-                    {page1.map(item => (
-                        <div>
-                            {item.year} <strong>{item.event}</strong> {item.loc}
-                            {item.detail && <br />}{item.detail}
-                            {item.award && <br />}<strong>{item.award}</strong>
-                            {item.award2 && <br />}<strong>{item.award2}</strong>
-                        </div>
-                    ))}
-                </div>
-            </div> -->
-
-            <!-- Page 2 -->
-            <!-- <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
-                <div class="text-[10px] leading-relaxed space-y-[1vh]">
-                    {page2.map(item => (
-                        <div>
-                            {item.year} <strong>{item.event}</strong> {item.loc}
-                            {item.detail && <br />}{item.detail}
-                            {item.award && <br />}<strong>{item.award}</strong>
-                        </div>
-                    ))}
-                </div>
-            </div> -->
             {pages.map((page) => (
                 <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
                     <div class="text-[10px] leading-relaxed space-y-[1vh]">
@@ -82,8 +56,6 @@ const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i)
 
         <!-- Page indicators -->
         <div class="flex justify-center gap-2 py-[2vh]">
-            <!-- <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current transition-opacity" data-page="0"></div>
-            <div class="page-indicator w-1.5 h-1.5 rounded-full bg-current opacity-30 transition-opacity" data-page="1"></div> -->
             {pages.map((_, i) => (
                 <div class="page-indicator-fest w-1.5 h-1.5 rounded-full bg-current transition-opacity opacity-30" data-page={i}></div>
             ))}
@@ -94,12 +66,20 @@ const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i)
     <div class="hidden flex-col w-full h-full pt-[3vh] px-[3.5vw] md:flex">
         <div class="w-full border-b border-current pb-[1vh] mb-[1vh]">
             <div class="flex flex-col">
-                <span class="block font-bold text-lg">{t.title}</span>
+                <span class="block font-bold
+                            xl:text-base
+                            2xl:text-lg">
+                    {t.title}
+                </span>
             </div>
         </div>
-        <div class="columns-3 gap-10 text-[10px] leading-relaxed">
+        <div class="columns-3 gap-10 text-[10px] leading-relaxed
+                    xl:text-xs
+                    2xl:text-sm">
             {t.items.map(item => (
-                <div class="break-inside-avoid mb-6">
+                <div class="break-inside-avoid
+                            xl:mb-6
+                            2xl:mb-8">
                     {item.year} <strong>{item.event}</strong> {item.loc}
                     {item.detail && <br />}{item.detail}
                     {item.award && <br />}<strong>{item.award}</strong>

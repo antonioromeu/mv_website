@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+    prefetch: true,
     build: {
         assets: 'assets' // Change '_astro' to 'assets' to avoid GitHub's Jekyll filter
     },
