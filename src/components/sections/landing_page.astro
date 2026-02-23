@@ -27,24 +27,24 @@ const t = landingContent[lang]; // Shortcut to the right language
                 2xl:min-h-0 2xl:flex-1 2xl:pl-[1.5vw] 2xl:pb-[3vh] 2xl:order-2 2xl:justify-end">
         <div class="flex flex-col mb-4
                     md:mb-6
-                    2xl:mb-8">
+                    xl:mb-6
+                    2xl:mb-6">
             <span class="block text-sm
                         md:text-lg
                         xl:text-xl
-                        2xl:text-2xl">
+                        2xl:text-xl">
                 {t.status}
             </span>
             <span class="block font-bold -mt-1 text-sm
                         md:text-lg 
                         xl:text-xl
-                        2xl:text-2xl">
+                        2xl:text-xl">
                 {t.title}
             </span>
         </div>
-        <div class="leading-relaxed
-                    text-xs 
-                    xl:space-y-2 xl:text-xs
-                    2xl:leading-[1.75] 2xl:text-base">
+        <div class="text-xs leading-relaxed
+                    xl:text-xs xl:space-y-2 xl:leading-relaxed
+                    2xl:text-xs 2xl:space-y-2 2xl:leading-[1.75]">
             {t.description.map((para) => (
                 <p set:html={para} />
             ))}
@@ -53,7 +53,9 @@ const t = landingContent[lang]; // Shortcut to the right language
 
     <!-- Image section -->
     <div class="w-full h-auto shrink-0 order-2 flex items-end overflow-hidden
-                md:w-auto md:h-full md:mt-0 md:order-1">
+                md:w-auto md:h-full md:mt-0 md:order-1
+                xl:w-auto xl:h-full xl:mt-0 xl:order-1
+                2xl:w-auto 2xl:h-full 2xl:mt-0 2xl:order-1">
         <Image 
             src={eoh_png} 
             alt={t.altText} 
