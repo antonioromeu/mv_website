@@ -48,8 +48,8 @@ const t = aboutContent[lang];
             </div>
         </div> -->
 
-        <div class="w-full h-full flex flex-col overflow-hidden">
-            <div class="w-full pt-[2vh] px-[3.5vw] flex-none">
+        <div class="h-full w-full flex flex-row">
+            <div class="flex-none w-fit pt-[2vh] px-[3.5vw] overflow-y-auto">
                 <span class="block font-bold text-xs">{t.reachOut}</span>
                 <p class="text-[10px] leading-relaxed">
                     <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
@@ -58,14 +58,13 @@ const t = aboutContent[lang];
                 </p>
             </div>
             
-            <div class="flex-1 w-full relative min-h-0">
+            <div class="flex-1 w-full pt-[2vh] overflow-hidden relative">
                 <video 
                     autoplay 
                     muted 
                     loop 
                     playsinline 
                     class="h-full w-full object-cover block"
-                    preload="auto"
                 >
                     <source src={about_mp4} type="video/mp4">
                 </video>
