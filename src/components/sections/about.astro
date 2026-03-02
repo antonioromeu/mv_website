@@ -32,8 +32,7 @@ const t = aboutContent[lang];
         </div>
         
         <!-- Reach Out & video loop section -->
-        <div class="w-full flex-1 flex flex-col overflow-hidden">
-            <!-- Reach Out section -->
+        <!-- <div class="w-full flex-1 flex flex-col overflow-hidden">
             <div class="w-full pt-[2vh] pl-[3.5vw] flex-none">
                 <span class="block font-bold text-xs">{t.reachOut}</span>
                 <p class="text-[10px] leading-relaxed">
@@ -42,10 +41,32 @@ const t = aboutContent[lang];
                     <a href="https://www.instagram.com/its.a.me_mariov/" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </p>
             </div>
-            
-            <!-- Video loop section -->
             <div class="flex-1 flex justify-end items-end min-h-0 w-full overflow-hidden">
                 <video autoplay muted loop playsinline class="h-full w-full object-bottom-right object-contain block">
+                    <source src={about_mp4} type="video/mp4">
+                </video>
+            </div>
+        </div> -->
+
+        <div class="w-full h-full flex flex-col overflow-hidden">
+            <div class="w-full pt-[2vh] px-[3.5vw] flex-none">
+                <span class="block font-bold text-xs">{t.reachOut}</span>
+                <p class="text-[10px] leading-relaxed">
+                    <a href="mailto:mariojcveloso@gmail.com">mariojcveloso@gmail.com</a>
+                    <br>
+                    <a href="https://www.instagram.com/its.a.me_mariov/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </p>
+            </div>
+            
+            <div class="flex-1 w-full relative min-h-0">
+                <video 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline 
+                    class="h-full w-full object-cover block"
+                    preload="auto"
+                >
                     <source src={about_mp4} type="video/mp4">
                 </video>
             </div>
