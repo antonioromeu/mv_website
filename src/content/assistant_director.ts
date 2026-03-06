@@ -237,7 +237,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 director: "Fernando Vendrell",
                 type: "Longa-metragem e Minissérie de TV, 6 episódios",
                 production: "David & Golias",
-                role: "Assistente de Realização Adicional",
+                role: "Reforço de Realização",
                 date: "Outubro e Novembro 2023"
             },
             {
@@ -256,7 +256,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 director: "Márcio Laranjeira",
                 type: "Minissérie de TV, 6 episódios",
                 production: "Fado Filmes",
-                role: "Assistente de Realização Adicional",
+                role: "Reforço de Realização",
                 date: "Abril 2023"
             },
             {
@@ -283,7 +283,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 director: "Jacobo Martínez",
                 type: "Longa-metragem",
                 production: "Bambu Producciones",
-                role: "Assistente de Realização Adicional",
+                role: "Reforço de Realização",
                 date: "Maio 2022"
             },
             {
