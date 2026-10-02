@@ -25,7 +25,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 type: "Feature Film",
                 production: "Basilisco Filmes",
                 role: "1st Assistent Director",
-                date: "On-going"
+                date: "Currently"
             },
             {
                 title: "Estamos Juntos",
@@ -272,16 +272,6 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 production: "Maria & Mayer",
                 role: "3rd Assistant Director",
                 date: "August - October 2020"
-            },
-            {
-                title: "Entre a Luz e Nada",
-                link: "https://www.imdb.com/title/tt27535150/",
-                status: "[PT, 2023]",
-                director: "Joana Sousa",
-                type: "Short Film",
-                production: "Primeira Idade",
-                role: "Production Assistant",
-                date: "July and August 2020"
             }
         ]
     },
@@ -295,7 +285,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 type: "Longa-metragem",
                 production: "Basilisco Filmes",
                 role: "1º Assistente de Realização",
-                date: "A decorrer"
+                date: "Atualmente"
             },
             {
                 title: "Estamos Juntos",
@@ -542,16 +532,6 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 production: "Maria & Mayer",
                 role: "3º Assistente de Realização",
                 date: "Agosto - Outubro 2020"
-            },
-            {
-                title: "Entre a Luz e Nada",
-                link: "https://www.imdb.com/title/tt27535150/",
-                status: "[PT, 2023]",
-                director: "Joana Sousa",
-                type: "Curta-metragem",
-                production: "Primeira Idade",
-                role: "Assistente de Produção",
-                date: "Julho e Agosto 2020"
             }
         ]
     }
