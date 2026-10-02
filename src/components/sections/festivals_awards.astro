@@ -8,27 +8,25 @@ interface Props {
 const { lang } = Astro.props;
 const t = festivalsContent[lang];
 
-// Split data for mobile pages (e.g., first 15 on page 1, rest on page 2)
-const page1 = t.items.slice(0, 15);
-const page2 = t.items.slice(15);
+// Frontmatter Helper: Chunk array into dynamic page sizes
+const chunkArray = <T,>(arr: T[], size: number): T[][] =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (_, i) => arr.slice(i * size, i * size + size));
 
-// Dynamically chunk festivals for mobile (15 per page)
-const perPage = 15;
-const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i) =>
-    t.items.slice(i * perPage, i * perPage + perPage)
-);
+// 1. Mobile Chunking (15 per page)
+const mobilePages = chunkArray(t.items, 15);
+
+// 2. Desktop Chunking (30 per page - fits 3 columns x 10 items)
+const desktopPages = chunkArray(t.items, 30);
 ---
 
 <section 
     id="festivals-awards" 
     data-color="var(--color-blue)" 
-    class="
-        snap-section shrink-0
-        md:flex-row md:items-center"
+    class="snap-section shrink-0"
     style={`padding-top: var(--nav-height);`}
 >
-    <!-- Mobile view  -->
-    <div class="flex flex-col w-full h-full overflow-hidden md:hidden">
+    <!-- ================= MOBILE VIEW ================= -->
+    <div class="flex flex-col w-full h-full overflow-hidden md:hidden relative">
         <!-- Header -->
         <div class="w-full px-[3.5vw] pt-[6vh] pb-[1vh]">
             <div class="border-b border-current pb-[1vh]">
@@ -36,10 +34,10 @@ const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i)
             </div>
         </div>
         
-        <!-- Scrollable pages container -->
-        <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex" id="festivals-scroll">
-            {pages.map((page) => (
-                <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0">
+        <!-- Mobile Scrollable Pages Container -->
+        <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex" id="festivals-scroll-mobile">
+            {mobilePages.map((page, pageIdx) => (
+                <div class="w-full h-full snap-start flex px-[3.5vw] py-[0.5vh] shrink-0 festival-page-mobile" data-page-index={pageIdx}>
                     <div class="text-[10px] leading-relaxed space-y-[1vh]">
                         {page.map(item => (
                             <div>
@@ -54,59 +52,87 @@ const pages = Array.from({ length: Math.ceil(t.items.length / perPage) }, (_, i)
             ))}
         </div>
 
-        <!-- Page indicators -->
-        <div class="flex justify-center gap-2 py-[2vh]">
-            {pages.map((_, i) => (
-                <div class="page-indicator-fest w-1.5 h-1.5 rounded-full bg-current transition-opacity opacity-30" data-page={i}></div>
-            ))}
-        </div>
+        <!-- Mobile Page Indicators -->
+        {mobilePages.length > 1 && (
+            <div class="flex justify-center gap-2 py-[2vh] shrink-0">
+                {mobilePages.map((_, i) => (
+                    <div 
+                        class={`page-indicator-fest-mobile w-1.5 h-1.5 rounded-full bg-current transition-opacity duration-200 pointer-events-none ${i === 0 ? 'opacity-100' : 'opacity-30'}`}
+                    ></div>
+                ))}
+            </div>
+        )}
     </div>
 
-    <!-- Desktop view -->
+    <!-- ================= DESKTOP VIEW ================= -->
     <div class="hidden flex-col w-full h-full pt-[3vh] px-[3.5vw] md:flex">
+        <!-- Header -->
         <div class="w-full border-b border-current pb-[1vh] mb-[1vh]">
-            <div class="flex flex-col">
-                <span class="block font-bold
-                            xl:text-base
-                            2xl:text-lg">
-                    {t.title}
-                </span>
-            </div>
+            <span class="block font-bold xl:text-base 2xl:text-lg">
+                {t.title}
+            </span>
         </div>
-        <div class="columns-3 gap-10 text-[10px] leading-relaxed
-                    xl:text-xs
-                    2xl:text-sm">
-            {t.items.map(item => (
-                <div class="break-inside-avoid
-                            xl:mb-6
-                            2xl:mb-8">
-                    {item.year} <strong>{item.event}</strong> {item.loc}
-                    {item.detail && <br />}{item.detail}
-                    {item.award && <br />}<strong>{item.award}</strong>
-                    {item.award2 && <br />}<strong>{item.award2}</strong>
+
+        <!-- Desktop Scrollable Pages Container -->
+        <div class="flex-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar flex w-full" id="festivals-scroll-desktop">
+            {desktopPages.map((page, pageIdx) => (
+                <div class="w-full h-full snap-start shrink-0 festival-page-desktop" data-page-index={pageIdx}>
+                    <div class="columns-3 gap-10 text-[10px] leading-relaxed xl:text-xs 2xl:text-sm">
+                        {page.map(item => (
+                            <div class="break-inside-avoid xl:mb-6 2xl:mb-8">
+                                {item.year} <strong>{item.event}</strong> {item.loc}
+                                {item.detail && <br />}{item.detail}
+                                {item.award && <br />}<strong>{item.award}</strong>
+                                {item.award2 && <br />}<strong>{item.award2}</strong>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             ))}
         </div>
+
+        <!-- Desktop Page Indicators -->
+        {desktopPages.length > 1 && (
+            <div class="flex justify-center gap-2 pt-4 pb-4 shrink-0">
+                {desktopPages.map((_, i) => (
+                    <div 
+                        class={`page-indicator-fest-desktop w-2 h-2 rounded-full bg-current transition-opacity duration-200 pointer-events-none ${i === 0 ? 'opacity-100' : 'opacity-30'}`} 
+                    ></div>
+                ))}
+            </div>
+        )}
     </div>
 </section>
 
 <script>
     function initFestivals() {
-        const scrollContainer = document.getElementById('festivals-scroll');
-        const indicators = document.querySelectorAll('.page-indicator-fest');
+        function setupReadonlyPagination(containerId: string, pageClass: string, dotClass: string) {
+            const container = document.getElementById(containerId);
+            const pages = container?.querySelectorAll(`.${pageClass}`);
+            const dots = document.querySelectorAll(`.${dotClass}`);
 
-        if (scrollContainer && indicators.length > 0) {
-            // Set initial state
-            indicators[0].classList.replace('opacity-30', 'opacity-100');
+            if (!container || !pages || pages.length === 0 || dots.length === 0) return;
 
-            scrollContainer.addEventListener('scroll', () => {
-                const currentPage = Math.round(scrollContainer.scrollLeft / scrollContainer.clientWidth);
-                indicators.forEach((ind, i) => {
-                    ind.classList.toggle('opacity-100', i === currentPage);
-                    ind.classList.toggle('opacity-30', i !== currentPage);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const activeIdx = Number((entry.target as HTMLElement).dataset.pageIndex);
+                        dots.forEach((dot, idx) => {
+                            dot.classList.toggle('opacity-100', idx === activeIdx);
+                            dot.classList.toggle('opacity-30', idx !== activeIdx);
+                        });
+                    }
                 });
-            }, { passive: true });
+            }, {
+                root: container,
+                threshold: 0.6
+            });
+
+            pages.forEach(page => observer.observe(page));
         }
+
+        setupReadonlyPagination('festivals-scroll-mobile', 'festival-page-mobile', 'page-indicator-fest-mobile');
+        setupReadonlyPagination('festivals-scroll-desktop', 'festival-page-desktop', 'page-indicator-fest-desktop');
     }
 
     // Initialize
