@@ -1,12 +1,12 @@
 interface Credit {
     title: string;
+    link?: string;   // Optional
+    status?: string; // Optional
     director: string;
     type: string;
     production: string;
     role: string;
     date: string;
-    status?: string; // Optional
-    link?: string;   // Optional
 }
 
 interface ADContent {
@@ -19,17 +19,85 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
         title: "Assistant Director",
         credits: [
             {
-                title: "Massa-Mãe",
+                title: "O Sermão do Fogo",
+                status: "[PT, Coming Soon]",
+                director: "Rita Azevedo Gomes",
+                type: "Feature Film",
+                production: "Basilisco Filmes",
+                role: "1st Assistent Director",
+                date: "On-going"
+            },
+            {
+                title: "Estamos Juntos",
+                status: "[PT, Coming Soon]",
+                director: "Joaquim Sapinho",
+                type: "Feature Film",
+                production: "Rosa Filmes",
+                role: "2nd Assistent Director (Office)",
+                date: "September - October 2026"
+            },
+            {
+                title: "Happy Ending",
+                status: "[PT, Coming Soon]",
+                director: "Lourenço Vaz",
+                type: "Short Film",
+                production: "Disaster Studio",
+                role: "1st Assistent Director",
+                date: "September 2026"
+            },
+            {
+                title: "Cuidado Com o Cão",
                 status: "[PT, Coming Soon]",
                 director: "Maria Novo",
                 type: "Short Film",
-                production: "Bingham Bryant & Maria Novo",
+                production: "Planeta Dispara",
+                role: "1st Assistent Director",
+                date: "August 2026"
+            },
+            {
+                title: "Afonso's Smile",
+                link: "https://www.imdb.com/title/tt37565719/",
+                status: "[PT-IT-LUX, Coming Soon]",
+                director: "João Pedro Rodrigues",
+                type: "Feature Filme",
+                production: "Terratreme, Frenesy Film Company & Joli Rideau Media",
+                role: "3rd Assistent Director",
+                date: "April - June 2026"
+            },
+            {
+                title: "Bragança",
+                link: "https://www.imdb.com/title/tt41298544/",
+                status: "[PT, Coming Soon]",
+                director: "Tino Navarro",
+                type: "TV Series, 6 episodes",
+                production: "MGN Filmes",
+                role: "Additional Assistant Director",
+                date: "April 2026"
+            },
+            {
+                title: "Cofre 8",
+                link: "https://www.imdb.com/title/tt43749646/",
+                status: "[PT, Coming Soon]",
+                director: "Manuel Mozos",
+                type: "Feature Film",
+                production: "Rosa Filmes",
+                role: "2nd Assistent Director",
+                date: "February - April 2026"
+            },
+            {
+                title: "Massa-Mãe",
+                link: "https://www.imdb.com/title/tt45382584/",
+                status: "[PT, 2026]",
+                director: "Maria Novo",
+                type: "Short Film",
+                production: "Planeta Dispara & Endymion Pro",
                 role: "1st Assistant Director",
                 date: "August 2025"
             },
             {
                 title: "El Espejismo",
-                status: "[PT-ES-US, Coming Soon]",
+                link: "https://www.imdb.com/title/tt43630246/",
+                status: "[PT-ES-US, 2026]",
                 director: "Bingham Bryant",
                 type: "Feature Film",
                 production: "Terratreme Filmes & Endymion Pro",
@@ -37,8 +105,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "November 2024"
             },
             {
-                title: "Rui Carlos [PT, 2025]",
+                title: "Rui Carlos",
                 link: "https://www.imdb.com/title/tt34932964/",
+                status: "[PT, 2025]",
                 director: "Margarida Paias",
                 type: "Short Film",
                 production: "Bravado Filmes",
@@ -46,8 +115,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "August 2024"
             },
             {
-                title: "A Travessia [PT, 2025]",
+                title: "A Travessia",
                 link: "https://www.imdb.com/title/tt29519538/",
+                status: "[PT, 2025]",
                 director: "Fernando Vendrell",
                 type: "Feature Film and TV Mini Series, 6 episodes",
                 production: "David & Golias",
@@ -56,8 +126,8 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Two Nights in Lisbon",
-                status: "[PT, Coming Soon]",
                 link: "https://www.imdb.com/title/tt31080111/",
+                status: "[PT, Coming Soon]",
                 director: "Henrique Oliveira",
                 type: "TV Series, 6 episodes",
                 production: "Hop! Filmes",
@@ -65,8 +135,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "October 2023"
             },
             {
-                title: "Casa Abrigo [PT, 2025]",
+                title: "Casa Abrigo",
                 link: "https://www.imdb.com/title/tt31440596/",
+                status: "[PT, 2025]",
                 director: "Márcio Laranjeira",
                 type: "TV Mini Series, 6 episodes",
                 production: "Fado Filmes",
@@ -74,8 +145,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "April 2023"
             },
             {
-                title: "NewJeans Super Shy [KR, 2023]",
+                title: "NewJeans Super Shy",
                 link: "https://www.youtube.com/watch?v=ArmDp-zijuc",
+                status: "[KR, 2023]",
                 director: "Heewon Shin",
                 type: "Videoclip",
                 production: "Min Hee Jin, service by PS Production",
@@ -83,8 +155,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "May 2023"
             },
             {
-                title: "After Everything [US, 2023]",
+                title: "After Everything",
                 link: "https://www.imdb.com/title/tt15334488/",
+                status: "[US, 2023]",
                 director: "Castille Landon",
                 type: "Feature Film",
                 production: "Voltage Pictures, service by Skydreams",
@@ -92,8 +165,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "May - August 2022"
             },
             {
-                title: "13 Exorcismos [ES, 2022]",
+                title: "13 Exorcismos",
                 link: "https://www.imdb.com/title/tt21199996/",
+                status: "[ES, 2022]",
                 director: "Jacobo Martínez",
                 type: "Feature Film",
                 production: "Bambu Producciones",
@@ -101,8 +175,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "May 2022"
             },
             {
-                title: "Motel Valkirias [PT-ES, 2023]",
+                title: "Motel Valkirias",
                 link: "https://www.imdb.com/title/tt15618722/",
+                status: "[PT-ES, 2023]",
                 director: "Alex Sampayo & Jorge Queiroga",
                 type: "TV Series, 8 episodes",
                 production: "SPI & CTV",
@@ -110,8 +185,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "December 2021 - March 2022"
             },
             {
-                title: "Estéril [PT, 2024]",
+                title: "Estéril",
                 link: "https://www.imdb.com/title/tt33015018/",
+                status: "[PT, 2024]",
                 director: "João Pais da Silva",
                 type: "Short Film",
                 production: "Corvo Filmes",
@@ -119,8 +195,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "November 2021"
             },
             {
-                title: "Curral de Moinas - Os Banqueiros do Povo [PT, 2022]",
+                title: "Curral de Moinas - Os Banqueiros do Povo",
                 link: "https://www.imdb.com/title/tt15678782/",
+                status: "[PT, 2022]",
                 director: "Miguel Cadilhe",
                 type: "Feature Film",
                 production: "Filbox Produções",
@@ -128,8 +205,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "September - November 2021"
             },
             {
-                title: "Operación Marea Negra [PT-ES, 2022]",
+                title: "Operación Marea Negra",
                 link: "https://www.imdb.com/title/tt14989818/",
+                status: "[PT-ES, 2022]",
                 director: "Daniel Calparsoro, Oskar Santos & João Maia",
                 type: "TV Mini Series, 4 episodes",
                 production: "UKBAR Filmes & Ficción",
@@ -146,8 +224,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "July 2021"
             },
             {
-                title: "Cuba Libre [PT, 2022]",
+                title: "Cuba Libre",
                 link: "https://www.imdb.com/title/tt13299806/",
+                status: "[PT, 2022]",
                 director: "Henrique Oliveira",
                 type: "TV Series, 8 episodes",
                 production: "Hop! Filmes",
@@ -155,8 +234,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "May and June 2021"
             },
             {
-                title: "A Rainha e a Bastarda [PT, 2022]",
+                title: "A Rainha e a Bastarda",
                 link: "https://www.imdb.com/title/tt13299820/",
+                status: "[PT, 2022]",
                 director: "Sérgio Graciano",
                 type: "TV Series, 8 episodes",
                 production: "Fado Filmes",
@@ -164,8 +244,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "May 2021"
             },
             {
-                title: "Pátria [PT, 2023]",
+                title: "Pátria",
                 link: "https://www.imdb.com/title/tt11460290/",
+                status: "[PT, 2023]",
                 director: "Bruno Gascon",
                 type: "Feature Film and TV Series, 4 episodes",
                 production: "Caracol Studios",
@@ -173,8 +254,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "March - May 2021"
             },
             {
-                title: "O Trio em Mi Bemol [PT, 2022]",
+                title: "O Trio em Mi Bemol",
                 link: "https://www.imdb.com/title/tt17555654/",
+                status: "[PT, 2022]",
                 director: "Rita Azevedo Gomes",
                 type: "Feature Film",
                 production: "Basilisco Filmes",
@@ -182,8 +264,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "October - December 2020"
             },
             {
-                title: "Pecado [PT, 2021]",
+                title: "Pecado",
                 link: "https://www.imdb.com/title/tt12854884/",
+                status: "[PT, 2021]",
                 director: "António Borges Correia",
                 type: "TV Mini Series, 6 episodes",
                 production: "Maria & Mayer",
@@ -191,8 +274,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "August - October 2020"
             },
             {
-                title: "Entre a Luz e Nada [PT, 2023]",
+                title: "Entre a Luz e Nada",
                 link: "https://www.imdb.com/title/tt27535150/",
+                status: "[PT, 2023]",
                 director: "Joana Sousa",
                 type: "Short Film",
                 production: "Primeira Idade",
@@ -205,8 +289,75 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
         title: "Assistente de Realização",
         credits: [
             {
+                title: "O Sermão do Fogo",
+                status: "[PT, Brevemente]",
+                director: "Rita Azevedo Gomes",
+                type: "Longa-metragem",
+                production: "Basilisco Filmes",
+                role: "1º Assistente de Realização",
+                date: "A decorrer"
+            },
+            {
+                title: "Estamos Juntos",
+                status: "[PT, Brevemente]",
+                director: "Joaquim Sapinho",
+                type: "Longa-metragem",
+                production: "Rosa Filmes",
+                role: "1º Assistente de Realização (Escritório)",
+                date: "Setembro - Outubro 2026"
+            },
+            {
+                title: "Final Feliz",
+                status: "[PT, Brevemente]",
+                director: "Lourenço Vaz",
+                type: "Curta-metragem",
+                production: "Disaster Studio",
+                role: "1º Assistente de Realização",
+                date: "Setembro 2026"
+            },
+            {
+                title: "Cuidado Com o Cão",
+                status: "[PT, Brevemente]",
+                director: "Maria Novo",
+                type: "Curta-metragem",
+                production: "Planeta Dispara",
+                role: "1º Assistente de Realização",
+                date: "Agosto 2026"
+            },
+            {
+                title: "O Sorriso de Afonso",
+                link: "https://www.imdb.com/title/tt37565719/",
+                status: "[PT-IT-LUX, Brevemente]",
+                director: "João Pedro Rodrigues",
+                type: "Longa-metragem",
+                production: "Terratreme, Frenesy Film Company & Joli Rideau Media",
+                role: "3º Assistente de Realização",
+                date: "Abril - Junho 2026"
+            },
+            {
+                title: "Bragança",
+                link: "https://www.imdb.com/title/tt41298544/",
+                status: "[PT, Brevemente]",
+                director: "Tino Navarro",
+                type: "Série de TV, 6 episódios",
+                production: "MGN Filmes",
+                role: "Reforço de Realização",
+                date: "Abril 2026"
+            },
+            {
+                title: "Cofre 8",
+                link: "https://www.imdb.com/title/tt43749646/",
+                status: "[PT, Brevemente]",
+                director: "Manuel Mozos",
+                type: "Longa-metragem",
+                production: "Rosa Filmes",
+                role: "2º Assistente de Realização",
+                date: "Fevereiro - Abril 2026"
+            },
+            {
                 title: "Massa-Mãe",
-                status: "[PT, Em Breve]",
+                link: "https://www.imdb.com/title/tt45382584/",
+                status: "[PT, 2026]",
                 director: "Maria Novo",
                 type: "Curta-metragem",
                 production: "Bingham Bryant & Maria Novo",
@@ -215,7 +366,8 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "El Espejismo",
-                status: "[PT-ES-US, Em Breve]",
+                link: "https://www.imdb.com/title/tt43630246/",
+                status: "[PT-ES-US, 2026]",
                 director: "Bingham Bryant",
                 type: "Longa-metragem",
                 production: "Terratreme Filmes & Endymion Pro",
@@ -223,8 +375,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Novembro 2024"
             },
             {
-                title: "Rui Carlos [PT, 2025]",
+                title: "Rui Carlos",
                 link: "https://www.imdb.com/title/tt34932964/",
+                status: "[PT, 2025]",
                 director: "Margarida Paias",
                 type: "Curta-metragem",
                 production: "Bravado Filmes",
@@ -232,8 +385,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Agosto 2024"
             },
             {
-                title: "A Travessia [PT, 2025]",
+                title: "A Travessia",
                 link: "https://www.imdb.com/title/tt29519538/",
+                status: "[PT, 2025]",
                 director: "Fernando Vendrell",
                 type: "Longa-metragem e Minissérie de TV, 6 episódios",
                 production: "David & Golias",
@@ -242,8 +396,8 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Two Nights in Lisbon",
-                status: "[PT, Em Breve]",
                 link: "https://www.imdb.com/title/tt31080111/",
+                status: "[PT, Brevemente]",
                 director: "Henrique Oliveira",
                 type: "Série de TV, 6 episódios",
                 production: "Hop! Filmes",
@@ -251,8 +405,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Outubro 2023"
             },
             {
-                title: "Casa Abrigo [PT, 2025]",
+                title: "Casa Abrigo",
                 link: "https://www.imdb.com/title/tt31440596/",
+                status: "[PT, 2025]",
                 director: "Márcio Laranjeira",
                 type: "Minissérie de TV, 6 episódios",
                 production: "Fado Filmes",
@@ -260,8 +415,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Abril 2023"
             },
             {
-                title: "NewJeans’ Super Shy [KR, 2023]",
+                title: "NewJeans Super Shy",
                 link: "https://www.youtube.com/watch?v=ArmDp-zijuc",
+                status: "[KR, 2023]",
                 director: "Heewon Shin",
                 type: "Videoclipe",
                 production: "Min Hee Jin, service de PS Production",
@@ -269,8 +425,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Maio 2023"
             },
             {
-                title: "After Everything [US, 2023]",
+                title: "After Everything",
                 link: "https://www.imdb.com/title/tt15334488/",
+                status: "[US, 2023]",
                 director: "Castille Landon",
                 type: "Longa-metragem",
                 production: "Voltage Pictures, service de Skydreams",
@@ -278,8 +435,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Maio - Agosto 2022"
             },
             {
-                title: "13 Exorcismos [ES, 2022]",
+                title: "13 Exorcismos",
                 link: "https://www.imdb.com/title/tt21199996/",
+                status: "[ES, 2022]",
                 director: "Jacobo Martínez",
                 type: "Longa-metragem",
                 production: "Bambu Producciones",
@@ -287,8 +445,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Maio 2022"
             },
             {
-                title: "Motel Valkirias [PT-ES, 2023]",
+                title: "Motel Valkirias",
                 link: "https://www.imdb.com/title/tt15618722/",
+                status: "[PT-ES, 2023]",
                 director: "Alex Sampayo & Jorge Queiroga",
                 type: "Série de TV, 8 episódios",
                 production: "SPI & CTV",
@@ -296,8 +455,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Dezembro 2021 - Março 2022"
             },
             {
-                title: "Estéril [PT, 2024]",
+                title: "Estéril",
                 link: "https://www.imdb.com/title/tt33015018/",
+                status: "[PT, 2024]",
                 director: "João Pais da Silva",
                 type: "Curta-metragem",
                 production: "Corvo Filmes",
@@ -305,8 +465,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Novembro 2021"
             },
             {
-                title: "Curral de Moinas - Os Banqueiros do Povo [PT, 2022]",
+                title: "Curral de Moinas - Os Banqueiros do Povo",
                 link: "https://www.imdb.com/title/tt15678782/",
+                status: "[PT, 2022]",
                 director: "Miguel Cadilhe",
                 type: "Longa-metragem",
                 production: "Filbox Produções",
@@ -314,8 +475,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Setembro - Novembro 2021"
             },
             {
-                title: "Operación Marea Negra [PT-ES, 2022]",
+                title: "Operación Marea Negra",
                 link: "https://www.imdb.com/title/tt14989818/",
+                status: "[PT-ES, 2022]",
                 director: "Daniel Calparsoro, Oskar Santos & João Maia",
                 type: "Minissérie de TV, 4 episódios",
                 production: "UKBAR Filmes & Ficción",
@@ -324,7 +486,7 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
             },
             {
                 title: "Os Dias das Coisas Pequenas",
-                status: "[PT, Em Breve]",
+                status: "[PT, Brevemente]",
                 director: "Catarina Campos de Sousa",
                 type: "Curta-metragem",
                 production: "Filmes do Gerador",
@@ -332,8 +494,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Julho 2021"
             },
             {
-                title: "Cuba Libre [PT, 2022]",
+                title: "Cuba Libre",
                 link: "https://www.imdb.com/title/tt13299806/",
+                status: "[PT, 2022]",
                 director: "Henrique Oliveira",
                 type: "Série de TV, 8 episódios",
                 production: "Hop! Filmes",
@@ -341,8 +504,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Maio e Junho 2021"
             },
             {
-                title: "A Rainha e a Bastarda [PT, 2022]",
+                title: "A Rainha e a Bastarda",
                 link: "https://www.imdb.com/title/tt13299820/",
+                status: "[PT, 2022]",
                 director: "Sérgio Graciano",
                 type: "Série de TV, 8 episódios",
                 production: "Fado Filmes",
@@ -350,8 +514,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Maio 2021"
             },
             {
-                title: "Pátria [PT, 2023]",
+                title: "Pátria",
                 link: "https://www.imdb.com/title/tt11460290/",
+                status: "[PT, 2023]",
                 director: "Bruno Gascon",
                 type: "Longa-metragem e Série de TV, 4 episódios",
                 production: "Caracol Studios",
@@ -359,8 +524,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Março - Maio 2021"
             },
             {
-                title: "O Trio em Mi Bemol [PT, 2022]",
+                title: "O Trio em Mi Bemol",
                 link: "https://www.imdb.com/title/tt17555654/",
+                status: "[PT, 2022]",
                 director: "Rita Azevedo Gomes",
                 type: "Longa-metragem",
                 production: "Basilisco Filmes",
@@ -368,8 +534,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Outubro - Dezembro 2020"
             },
             {
-                title: "Pecado [PT, 2021]",
+                title: "Pecado",
                 link: "https://www.imdb.com/title/tt12854884/",
+                status: "[PT, 2021]",
                 director: "António Borges Correia",
                 type: "Minissérie de TV, 6 episódios",
                 production: "Maria & Mayer",
@@ -377,8 +544,9 @@ export const adContent: Record<'en' | 'pt', ADContent> = {
                 date: "Agosto - Outubro 2020"
             },
             {
-                title: "Entre a Luz e Nada [PT, 2023]",
+                title: "Entre a Luz e Nada",
                 link: "https://www.imdb.com/title/tt27535150/",
+                status: "[PT, 2023]",
                 director: "Joana Sousa",
                 type: "Curta-metragem",
                 production: "Primeira Idade",
